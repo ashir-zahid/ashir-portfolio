@@ -511,6 +511,43 @@
   border-color: rgba(96,165,250,0.4);
   background: rgba(96,165,250,0.05);
 }
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.cert-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 18px;
+  transition: all 0.3s ease;
+}
+
+.cert-card h4 {
+  margin: 0 0 6px;
+  color: #60a5fa;
+}
+
+.cert-card p {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: #d7e4fb;
+}
+
+.cert-meta {
+  font-size: 12px;
+  color: #9fb0d1;
+}
+
+/* hover */
+.cert-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(96,165,250,0.4);
+  background: rgba(96,165,250,0.05);
+}
     @media (max-width: 980px){
       .impact-grid{
         grid-template-columns: repeat(2, 1fr);
@@ -626,7 +663,49 @@
         </div>
       </div>
     </section>
+	<div class="section" id="certifications">
+  <div class="section-head">
+    <span class="eyebrow">Credentials</span>
+    <h2>Certifications</h2>
+    <p class="section-copy">
+      Microsoft certifications validating expertise in Dynamics 365 and Power Platform development and solution delivery.
+    </p>
+  </div>
 
+  <div class="cert-grid">
+
+    <div class="cert-card">
+      <h4>PL-400</h4>
+      <p>Power Platform Developer</p>
+      <span class="cert-meta">Microsoft • 2023</span>
+    </div>
+
+    <div class="cert-card">
+      <h4>PL-200</h4>
+      <p>Power Platform Functional Consultant Associate</p>
+      <span class="cert-meta">Microsoft • 2022</span>
+    </div>
+
+    <div class="cert-card">
+      <h4>MB-210</h4>
+      <p>Dynamics 365 Sales Functional Consultant Associate</p>
+      <span class="cert-meta">Microsoft • 2022</span>
+    </div>
+
+    <div class="cert-card">
+      <h4>MB-910</h4>
+      <p>Dynamics 365 Fundamentals</p>
+      <span class="cert-meta">Microsoft</span>
+    </div>
+
+    <div class="cert-card">
+      <h4>PL-900</h4>
+      <p>Power Platform Fundamentals</p>
+      <span class="cert-meta">Microsoft</span>
+    </div>
+
+  </div>
+</div>
     <section class="section" id="projects">
       <div class="section-head">
         <span class="eyebrow">Selected Work</span>
@@ -1135,32 +1214,123 @@
       </div>
     </section>
 
-    <section class="section" id="skills">
-      <div class="section-head">
-        <span class="eyebrow">Capabilities</span>
-        <h2>What I Work With</h2>
-        <p class="section-copy">
-          A practical mix of business applications, automation, integration, and delivery experience.
-        </p>
-      </div>
 
+<div class="section" id="skills">
+  <div class="section-head">
+    <span class="eyebrow">Capabilities</span>
+    <h2>Skills & Expertise</h2>
+    <p class="section-copy">
+      A blend of technical depth and business-focused solution design across Dynamics 365, Power Platform, and enterprise systems.
+    </p>
+  </div>
+
+  <div class="skills-grid">
+
+    <!-- Dynamics -->
+    <div class="skill-group">
+      <h4>Dynamics 365 & Power Platform</h4>
       <div class="skills-wrap">
-        <span class="skill">Dynamics 365 CE (Sales, Customer Service)</span>
-        <span class="skill">Power Platform</span>
-        <span class="skill">Power Apps</span>
-        <span class="skill">Power Automate</span>
-        <span class="skill">Power Pages</span>
+        <span class="skill">Dynamics 365 (Sales, Customer Service)</span>
         <span class="skill">Dataverse</span>
-        <span class="skill">C# Plugins</span>
-        <span class="skill">Custom Workflows</span>
-        <span class="skill">JavaScript</span>
-        <span class="skill">Azure Integrations</span>
-        <span class="skill">REST / SOAP APIs</span>
-        <span class="skill">SSIS / KingswaySoft</span>
-        <span class="skill">SQL Server</span>
-        <span class="skill">Production Support</span>
+        <span class="skill">Model-Driven Apps</span>
+        <span class="skill">Canvas Apps</span>
+        <span class="skill">Power Pages</span>
+        <span class="skill">Power Automate</span>
+        <span class="skill">AI Builder</span>
+        <span class="skill">Business Rules & Workflows</span>
+        <span class="skill">Ribbon Workbench</span>
+        <span class="skill">Custom Pages</span>
+        <span class="skill">Power Platform Pipelines</span>
       </div>
-    </section>
+    </div>
+
+    <!-- Development -->
+    <div class="skill-group">
+      <h4>Development</h4>
+      <div class="skills-wrap">
+        <span class="skill">C# / .NET</span>
+        <span class="skill">Plugins & Custom Workflow Activities</span>
+        <span class="skill">ASP.NET (MVC, Web API)</span>
+        <span class="skill">JavaScript / TypeScript</span>
+        <span class="skill">jQuery / Knockout JS</span>
+        <span class="skill">Power FX</span>
+        <span class="skill">HTML / CSS</span>
+        <span class="skill">Liquid Templates</span>
+        <span class="skill">FetchXML / SDK</span>
+      </div>
+    </div>
+
+    <!-- Integration -->
+    <div class="skill-group">
+      <h4>Integration & Automation</h4>
+      <div class="skills-wrap">
+        <span class="skill">Azure Functions</span>
+        <span class="skill">Azure Logic Apps</span>
+        <span class="skill">Webhooks</span>
+        <span class="skill">REST / SOAP APIs</span>
+        <span class="skill">OData APIs</span>
+        <span class="skill">SSIS (KingswaySoft)</span>
+        <span class="skill">Microsoft Graph API</span>
+        <span class="skill">HubSpot & Dow Jones Integration</span>
+        <span class="skill">SharePoint Integration</span>
+      </div>
+    </div>
+
+    <!-- Data -->
+    <div class="skill-group">
+      <h4>Data, Reporting & Security</h4>
+      <div class="skills-wrap">
+        <span class="skill">SQL Server</span>
+        <span class="skill">Dataverse</span>
+        <span class="skill">Data Migration</span>
+        <span class="skill">SSRS Reporting</span>
+        <span class="skill">Azure Storage</span>
+        <span class="skill">Role-Based Security</span>
+        <span class="skill">Field-Level Security</span>
+        <span class="skill">GDPR Compliance</span>
+      </div>
+    </div>
+
+    <!-- Identity -->
+    <div class="skill-group">
+      <h4>Identity & Authentication</h4>
+      <div class="skills-wrap">
+        <span class="skill">Microsoft Entra ID (Azure AD)</span>
+        <span class="skill">Azure AD B2C</span>
+        <span class="skill">SSO</span>
+        <span class="skill">Power Pages Authentication</span>
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <div class="skill-group">
+      <h4>Tools & DevOps</h4>
+      <div class="skills-wrap">
+        <span class="skill">Azure DevOps</span>
+        <span class="skill">Git</span>
+        <span class="skill">Visual Studio</span>
+        <span class="skill">VS Code</span>
+        <span class="skill">XrmToolBox</span>
+        <span class="skill">Jira</span>
+      </div>
+    </div>
+
+    <!-- Consulting -->
+    <div class="skill-group">
+      <h4>Consulting & Delivery</h4>
+      <div class="skills-wrap">
+        <span class="skill">Solution Design</span>
+        <span class="skill">ALM</span>
+        <span class="skill">Requirement Analysis</span>
+        <span class="skill">Business Process Improvement</span>
+        <span class="skill">Stakeholder Management</span>
+        <span class="skill">Agile / Scrum</span>
+        <span class="skill">Client Training</span>
+      </div>
+    </div>
+
+  </div>
+</div>
 
     <section class="section" id="contact">
       <div class="section-head">
