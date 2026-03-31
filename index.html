@@ -476,6 +476,41 @@
   padding-top: 10px;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
+    .tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.tech-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 16px;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.tech-card h5 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: #60a5fa;
+}
+
+.tech-card p {
+  margin: 0;
+  font-size: 13px;
+  color: #d7e4fb;
+  line-height: 1.5;
+}
+
+/* 🔥 hover effect */
+.tech-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(96,165,250,0.4);
+  background: rgba(96,165,250,0.05);
+}
     @media (max-width: 980px){
       .impact-grid{
         grid-template-columns: repeat(2, 1fr);
@@ -697,15 +732,44 @@
       The solution was designed as an end-to-end platform using Dynamics 365 and Power Platform, combining internal process management, supplier collaboration, and intelligent automation in a single system.
     </p>
 
-    <ul class="ba-list">
-      <li><strong>Model-Driven App:</strong> Manage BOQ data, packages, and quotation comparison</li>
-      <li><strong>Power Pages:</strong> Supplier portal for pricing, alternatives, and document submission</li>
-      <li><strong>AI Builder:</strong> Intelligent categorization of BOQ items based on descriptions</li>
-      <li><strong>Power Automate:</strong> Email communication, notifications, and workflow automation</li>
-      <li><strong>Custom Pages & JavaScript:</strong> Enhanced UI and interactive comparison screens</li>
-      <li><strong>Business Rules & Security:</strong> Controlled data validation and access</li>
-      <li><strong>Shared Mailboxes:</strong> Centralized supplier communication</li>
-    </ul>
+    <div class="tech-grid">
+  
+  <div class="tech-card">
+    <h5>Model-Driven App</h5>
+    <p>Manage BOQ data, packages, and quotation comparison</p>
+  </div>
+
+  <div class="tech-card">
+    <h5>Power Pages</h5>
+    <p>Supplier portal for pricing, alternatives, and document submission</p>
+  </div>
+
+  <div class="tech-card">
+    <h5>AI Builder</h5>
+    <p>Automatic categorization of BOQ items using descriptions</p>
+  </div>
+
+  <div class="tech-card">
+    <h5>Power Automate</h5>
+    <p>Email communication, notifications, and workflow automation</p>
+  </div>
+
+  <div class="tech-card">
+    <h5>Custom Pages & JavaScript</h5>
+    <p>Interactive UI and dynamic quotation comparison</p>
+  </div>
+
+  <div class="tech-card">
+    <h5>Business Rules & Security</h5>
+    <p>Data validation, access control, and structured workflows</p>
+  </div>
+
+  <div class="tech-card">
+    <h5>Shared Mailboxes</h5>
+    <p>Centralized and automated supplier communication</p>
+  </div>
+
+</div>
   </div>
 
 </div>
