@@ -19,7 +19,7 @@
       --green:#37d39a;
       --shadow:0 20px 50px rgba(0,0,0,0.28);
       --radius:20px;
-      --max:1100px;
+      --max:1120px;
     }
 
     *{box-sizing:border-box}
@@ -250,7 +250,7 @@
       border-radius:22px;
       padding:24px;
       box-shadow:var(--shadow);
-      margin-bottom:20px;
+      margin-bottom:22px;
       transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease;
     }
 
@@ -261,7 +261,7 @@
     }
 
     .story-top{
-      margin-bottom:16px;
+      margin-bottom:18px;
     }
 
     .story-tag{
@@ -307,6 +307,110 @@
     .story-block p{
       margin:0;
       color:#d7e4fb;
+    }
+
+    .before-after{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+
+    .ba-card{
+      background:rgba(255,255,255,0.025);
+      border:1px solid rgba(255,255,255,0.04);
+      border-radius:16px;
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .ba-card::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:4px;
+    }
+
+    .ba-before::before{
+      background:#ff7a7a;
+    }
+
+    .ba-after::before{
+      background:#37d39a;
+    }
+
+    .ba-label{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+      margin-bottom:8px;
+    }
+
+    .ba-card h4{
+      margin:0 0 8px;
+      font-size:18px;
+    }
+
+    .ba-list{
+      padding-left:18px;
+      margin:0;
+      color:#d7e4fb;
+    }
+
+    .ba-list li{
+      margin-bottom:8px;
+    }
+
+    .process-timeline{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap:12px;
+    }
+
+    .timeline-step{
+      background:rgba(255,255,255,0.025);
+      border:1px solid rgba(255,255,255,0.04);
+      border-radius:16px;
+      padding:14px;
+      text-align:left;
+      transition:transform .25s ease, border-color .25s ease;
+    }
+
+    .timeline-step:hover{
+      transform:translateY(-3px);
+      border-color:rgba(78,161,255,0.26);
+    }
+
+    .timeline-number{
+      width:28px;
+      height:28px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--blue-soft);
+      color:#cde4ff;
+      font-weight:700;
+      margin-bottom:10px;
+      font-size:13px;
+    }
+
+    .timeline-step h5{
+      margin:0 0 6px;
+      font-size:14px;
+      color:#fff;
+    }
+
+    .timeline-step p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
     }
 
     .skills-wrap{
@@ -368,8 +472,11 @@
       font-size:14px;
     }
 
-    @media (max-width: 900px){
+    @media (max-width: 980px){
       .impact-grid{
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .process-timeline{
         grid-template-columns: repeat(2, 1fr);
       }
       .contact-grid{
@@ -388,13 +495,15 @@
       .hero-actions{
         justify-content:center;
       }
-      .story-grid{
+      .story-grid,
+      .before-after{
         grid-template-columns:1fr;
       }
     }
 
     @media (max-width: 560px){
-      .impact-grid{
+      .impact-grid,
+      .process-timeline{
         grid-template-columns:1fr;
       }
       .nav-wrap{
@@ -431,7 +540,7 @@
         <div>
           <span class="eyebrow">Dynamics 365 CE & Power Platform</span>
           <h1>Ashir Zahid</h1>
-          <p class="hero-sub">Technical Consultant helping teams simplify processes, improve visibility, and automate work that slows the business down.</p>
+          <p class="hero-sub">Technical Consultant focused on simplifying business processes, improving visibility, and reducing manual work through practical CRM and automation solutions.</p>
           <p class="hero-copy">
             I work on Microsoft Dynamics 365 and Power Platform solutions that solve real business problems — from sales process improvement to case management, AI-driven BOQ automation, system integration, and enterprise data migration.
           </p>
@@ -448,7 +557,7 @@
         <span class="eyebrow">Highlights</span>
         <h2>Key Impact</h2>
         <p class="section-copy">
-          A snapshot of the business outcomes delivered across CRM, automation, integration, and data projects.
+          A quick view of the business outcomes delivered across CRM, automation, integration, and data projects.
         </p>
       </div>
 
@@ -456,25 +565,25 @@
         <div class="impact-card">
           <div class="impact-number">80%</div>
           <div class="impact-title">Less Manual BOQ Work</div>
-          <div class="impact-text">Used AI and automation to reduce repetitive Excel-based BOQ handling.</div>
+          <div class="impact-text">Replaced repetitive Excel-based BOQ handling with AI-driven automation.</div>
         </div>
 
         <div class="impact-card">
           <div class="impact-number">25%</div>
           <div class="impact-title">Faster Sales Cycle</div>
-          <div class="impact-text">Improved lead and opportunity flow with a more structured CRM process.</div>
+          <div class="impact-text">Improved lead and opportunity flow with a more structured sales process.</div>
         </div>
 
         <div class="impact-card">
           <div class="impact-number">500K+</div>
           <div class="impact-title">Records Migrated</div>
-          <div class="impact-text">Moved large volumes of business data with zero downtime.</div>
+          <div class="impact-text">Moved large volumes of legacy data with zero downtime.</div>
         </div>
 
         <div class="impact-card">
           <div class="impact-number">40%</div>
           <div class="impact-title">Reporting Time Saved</div>
-          <div class="impact-text">Reduced manual reporting effort through automation and better visibility.</div>
+          <div class="impact-text">Reduced manual reporting effort through better visibility and automation.</div>
         </div>
       </div>
     </section>
@@ -484,33 +593,87 @@
         <span class="eyebrow">Selected Work</span>
         <h2>Business Problems I Helped Solve</h2>
         <p class="section-copy">
-          A few examples of how I worked with teams to understand what was slowing them down, improve the process, and deliver solutions people could actually use.
+          A few examples of how I worked with teams to understand where time was being lost, improve the process, and deliver solutions that made a clear difference.
         </p>
       </div>
 
       <div class="story-card">
         <div class="story-top">
           <span class="story-tag">Construction / Estimation</span>
-          <h3>AI-Based BOQ Automation</h3>
-          <p class="my-role"><strong>My Role:</strong> Worked with business users to understand the manual BOQ process, identify where time and accuracy were being lost, and shape the solution approach from discovery to delivery.</p>
+          <h3>AI-Based BOQ Estimation & Tender Automation</h3>
+          <p class="my-role"><strong>My Role:</strong> I worked closely with estimators to understand their end-to-end workflow, identified where time was being lost, and helped design and deliver a system that automated the full estimation and tender process while keeping control in the hands of the users.</p>
         </div>
 
         <div class="story-grid">
           <div class="story-block">
             <h4>The Challenge</h4>
-            <p>BOQ data was handled manually in Excel, which made the work slow, repetitive, and prone to mistakes.</p>
+            <p>Estimators were handling the full BOQ process manually through Excel and email. They had to categorize items, send package requests, track supplier replies, compare quotations, and prepare tender settlement by hand.</p>
           </div>
           <div class="story-block">
             <h4>What I Changed</h4>
-            <p>I helped redesign the process so data could be captured, classified, and structured automatically instead of relying on manual effort.</p>
+            <p>I helped redesign the process so it could be managed in one system instead of scattered across spreadsheets and inboxes, while still allowing estimators to review and control decisions.</p>
           </div>
           <div class="story-block">
             <h4>How I Worked</h4>
-            <p>I reviewed the current workflow with users, identified the pain points, and turned that into a practical automation approach that matched how the team actually worked.</p>
+            <p>I reviewed the current workflow with estimators, identified bottlenecks, and shaped a more practical process where categorization, supplier communication, quotation handling, and tender preparation were all connected.</p>
           </div>
           <div class="story-block">
             <h4>Business Outcome</h4>
-            <p>Manual effort dropped by <strong>80%</strong>, data accuracy improved, and the estimation process moved much faster.</p>
+            <p>Manual effort dropped by <strong>80%</strong>, accuracy improved, and estimators gained full visibility from BOQ upload to final tender submission.</p>
+          </div>
+        </div>
+
+        <div class="before-after">
+          <div class="ba-card ba-before">
+            <div class="ba-label">Before</div>
+            <h4>Manual & scattered</h4>
+            <ul class="ba-list">
+              <li>Excel used for item categorization</li>
+              <li>Email used to send packages to suppliers</li>
+              <li>Supplier quotations tracked manually</li>
+              <li>Alternatives and quantity changes reviewed by hand</li>
+              <li>Tender settlement prepared manually in Excel</li>
+            </ul>
+          </div>
+
+          <div class="ba-card ba-after">
+            <div class="ba-label">After</div>
+            <h4>Centralized & automated</h4>
+            <ul class="ba-list">
+              <li>BOQ uploaded directly into the system</li>
+              <li>Items categorized automatically using AI</li>
+              <li>Packages sent to suppliers from the platform</li>
+              <li>Suppliers submit quotes through a portal</li>
+              <li>Tender settlement generated automatically</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="process-timeline">
+          <div class="timeline-step">
+            <div class="timeline-number">1</div>
+            <h5>Upload</h5>
+            <p>Estimator uploads the BOQ Excel file into the system.</p>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">2</div>
+            <h5>Categorize</h5>
+            <p>Items are categorized automatically, with user review where needed.</p>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">3</div>
+            <h5>Request Quotes</h5>
+            <p>Packages are sent to suppliers directly from the platform.</p>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">4</div>
+            <h5>Compare</h5>
+            <p>Quotations are received, reviewed, and compared in one place.</p>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-number">5</div>
+            <h5>Finalize</h5>
+            <p>Tender settlement and final Excel output are generated automatically.</p>
           </div>
         </div>
       </div>
@@ -525,7 +688,7 @@
         <div class="story-grid">
           <div class="story-block">
             <h4>The Challenge</h4>
-            <p>The sales team was using manual follow-up and had limited visibility into where deals were getting stuck.</p>
+            <p>The sales team was relying on manual follow-up and had limited visibility into deal progress.</p>
           </div>
           <div class="story-block">
             <h4>What I Changed</h4>
@@ -533,7 +696,7 @@
           </div>
           <div class="story-block">
             <h4>How I Worked</h4>
-            <p>I gathered input from the business, mapped the gaps in the current process, and shaped a simpler workflow that was easier to follow and easier to measure.</p>
+            <p>I gathered input from the business, mapped where the process was slowing down, and shaped a simpler workflow that was easier to follow and easier to measure.</p>
           </div>
           <div class="story-block">
             <h4>Business Outcome</h4>
@@ -546,13 +709,13 @@
         <div class="story-top">
           <span class="story-tag">Customer Service</span>
           <h3>Case Management & Customer Portal</h3>
-          <p class="my-role"><strong>My Role:</strong> Helped shape the service journey for both customers and internal teams, with a focus on faster handling, better visibility, and a smoother experience.</p>
+          <p class="my-role"><strong>My Role:</strong> Helped shape the service journey for both customers and internal teams, focusing on faster handling, better visibility, and a smoother experience.</p>
         </div>
 
         <div class="story-grid">
           <div class="story-block">
             <h4>The Challenge</h4>
-            <p>Customers had no simple way to track requests, and internal teams were spending too much time managing cases manually.</p>
+            <p>Customers had no simple way to track requests, and internal teams were spending too much time handling cases manually.</p>
           </div>
           <div class="story-block">
             <h4>What I Changed</h4>
@@ -684,13 +847,15 @@
   </main>
 
   <script>
-    const revealItems = document.querySelectorAll('.section');
+    const revealItems = document.querySelectorAll('.section, .story-card, .impact-card');
 
     const revealOnScroll = () => {
-      revealItems.forEach((item) => {
+      revealItems.forEach((item, index) => {
         const top = item.getBoundingClientRect().top;
         if (top < window.innerHeight - 80) {
-          item.classList.add('show');
+          setTimeout(() => {
+            item.classList.add('show');
+          }, index * 60);
         }
       });
     };
