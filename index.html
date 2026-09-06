@@ -1,1471 +1,1261 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ashir Zahid | Dynamics 365 Portfolio</title>
-  <meta name="description" content="Dynamics 365 CE & Power Platform Technical Consultant portfolio" />
-  <style>
-    :root{
-      --bg:#0b1220;
-      --bg-soft:#111a2d;
-      --card:#121c31;
-      --card-2:#16233d;
-      --text:#eef4ff;
-      --muted:#9fb0d1;
-      --line:rgba(255,255,255,0.08);
-      --blue:#4ea1ff;
-      --blue-soft:rgba(78,161,255,0.14);
-      --green:#37d39a;
-      --shadow:0 20px 50px rgba(0,0,0,0.28);
-      --radius:20px;
-      --max:1120px;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family: Inter, Segoe UI, Arial, sans-serif;
-      background:
-        radial-gradient(circle at top right, rgba(78,161,255,0.12), transparent 24%),
-        radial-gradient(circle at top left, rgba(55,211,154,0.08), transparent 20%),
-        var(--bg);
-      color:var(--text);
-      line-height:1.65;
-    }
-
-    a{
-      color:var(--blue);
-      text-decoration:none;
-    }
-
-    img{
-      max-width:100%;
-      display:block;
-    }
-
-    .container{
-      width:min(var(--max), calc(100% - 32px));
-      margin:0 auto;
-    }
-
-    .nav{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter: blur(10px);
-      background: rgba(11,18,32,0.72);
-      border-bottom:1px solid var(--line);
-    }
-
-    .nav-wrap{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:14px 0;
-    }
-
-    .brand{
-      font-weight:700;
-      letter-spacing:.2px;
-    }
-
-    .nav-links{
-      display:flex;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-
-    .nav-links a{
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .nav-links a:hover{
-      color:var(--text);
-    }
-
-    .hero{
-      padding:72px 0 40px;
-    }
-
-    .hero-card{
-      display:grid;
-      grid-template-columns: 140px 1fr;
-      gap:28px;
-      align-items:center;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border:1px solid var(--line);
-      border-radius:28px;
-      padding:30px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-photo{
-      width:140px;
-      height:140px;
-      border-radius:50%;
-      overflow:hidden;
-      border:3px solid rgba(78,161,255,0.6);
-      box-shadow:0 10px 30px rgba(78,161,255,0.18);
-    }
-
-    .eyebrow{
-      display:inline-block;
-      padding:6px 12px;
-      border-radius:999px;
-      background:var(--blue-soft);
-      color:#bddcff;
-      font-size:12px;
-      font-weight:600;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      margin-bottom:14px;
-    }
-
-    h1{
-      margin:0 0 8px;
-      font-size:clamp(32px, 5vw, 52px);
-      line-height:1.08;
-    }
-
-    .hero-sub{
-      font-size:clamp(16px, 2.4vw, 20px);
-      color:#c9d8f3;
-      margin:0 0 14px;
-    }
-
-    .hero-copy{
-      color:var(--muted);
-      max-width:760px;
-      margin:0;
-    }
-
-    .hero-actions{
-      margin-top:22px;
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:12px 16px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:var(--card);
-      color:var(--text);
-      font-weight:600;
-      transition:transform .25s ease, background .25s ease, border-color .25s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-2px);
-      background:var(--card-2);
-      border-color:rgba(78,161,255,0.35);
-    }
-
-    .btn-primary{
-      background:var(--blue);
-      color:#07111f;
-      border-color:transparent;
-    }
-
-    .btn-primary:hover{
-      background:#6ab2ff;
-    }
-
-    .section{
-      padding:30px 0 10px;
-      opacity:0;
-      transform:translateY(28px);
-      transition:opacity .7s ease, transform .7s ease;
-    }
-
-    .section.show{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    .section-head{
-      margin-bottom:22px;
-    }
-
-    .section-head h2{
-      margin:6px 0 10px;
-      font-size:clamp(24px, 3vw, 34px);
-    }
-
-    .section-copy{
-      margin:0;
-      color:var(--muted);
-      max-width:760px;
-    }
-
-    .impact-grid{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap:16px;
-    }
-
-    .impact-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:22px 18px;
-      box-shadow:var(--shadow);
-      transition:transform .25s ease, border-color .25s ease;
-    }
-
-    .impact-card:hover{
-      transform:translateY(-4px);
-      border-color:rgba(78,161,255,0.28);
-    }
-
-    .impact-number{
-      font-size:32px;
-      font-weight:800;
-      color:var(--blue);
-      line-height:1;
-      margin-bottom:8px;
-    }
-
-    .impact-title{
-      font-weight:700;
-      margin-bottom:6px;
-    }
-
-    .impact-text{
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .story-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      border:1px solid var(--line);
-      border-radius:22px;
-      padding:24px;
-      box-shadow:var(--shadow);
-      margin-bottom:22px;
-      transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease;
-    }
-
-    .story-card:hover{
-      transform:translateY(-4px);
-      border-color:rgba(78,161,255,0.28);
-      box-shadow:0 28px 60px rgba(0,0,0,0.3);
-    }
-
-    .story-top{
-      margin-bottom:18px;
-    }
-
-    .story-tag{
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(55,211,154,0.12);
-      color:#abefd7;
-      font-size:12px;
-      font-weight:700;
-      margin-bottom:10px;
-    }
-
-    .story-card h3{
-      margin:0 0 10px;
-      font-size:26px;
-    }
-
-    .my-role{
-      margin:0;
-      color:#d8e5fb;
-    }
-
-    .story-grid{
-      display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap:16px;
-    }
-
-    .story-block{
-      background:rgba(255,255,255,0.025);
-      border:1px solid rgba(255,255,255,0.04);
-      border-radius:16px;
-      padding:16px;
-    }
-
-    .story-block h4{
-      margin:0 0 8px;
-      font-size:15px;
-      color:var(--blue);
-    }
-
-    .story-block p{
-      margin:0;
-      color:#d7e4fb;
-    }
-
-    .before-after{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:16px;
-    }
-
-    .ba-card{
-      background:rgba(255,255,255,0.025);
-      border:1px solid rgba(255,255,255,0.04);
-      border-radius:16px;
-      padding:18px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .ba-card::before{
-      content:"";
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:4px;
-    }
-
-    .ba-before::before{
-      background:#ff7a7a;
-    }
-
-    .ba-after::before{
-      background:#37d39a;
-    }
-
-    .ba-label{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      color:var(--muted);
-      margin-bottom:8px;
-    }
-
-    .ba-card h4{
-      margin:0 0 8px;
-      font-size:18px;
-    }
-
-    .ba-list{
-      padding-left:18px;
-      margin:0;
-      color:#d7e4fb;
-    }
-
-    .ba-list li{
-      margin-bottom:8px;
-    }
-
-    .process-timeline{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap:12px;
-    }
-
-    .timeline-step{
-      background:rgba(255,255,255,0.025);
-      border:1px solid rgba(255,255,255,0.04);
-      border-radius:16px;
-      padding:14px;
-      text-align:left;
-      transition:transform .25s ease, border-color .25s ease;
-    }
-
-    .timeline-step:hover{
-      transform:translateY(-3px);
-      border-color:rgba(78,161,255,0.26);
-    }
-
-    .timeline-number{
-      width:28px;
-      height:28px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:var(--blue-soft);
-      color:#cde4ff;
-      font-weight:700;
-      margin-bottom:10px;
-      font-size:13px;
-    }
-
-    .timeline-step h5{
-      margin:0 0 6px;
-      font-size:14px;
-      color:#fff;
-    }
-
-    .timeline-step p{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.55;
-    }
-
-    .skills-wrap{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .skill{
-      display:inline-flex;
-      align-items:center;
-      padding:10px 14px;
-      border-radius:999px;
-      background:var(--card);
-      border:1px solid var(--line);
-      color:#dce8ff;
-      transition:transform .2s ease, border-color .2s ease, background .2s ease;
-    }
-
-    .skill:hover{
-      transform:translateY(-2px);
-      border-color:rgba(78,161,255,0.3);
-      background:var(--card-2);
-    }
-
-    .contact-card{
-      background:linear-gradient(180deg, rgba(78,161,255,0.08), rgba(255,255,255,0.02));
-      border:1px solid var(--line);
-      border-radius:22px;
-      padding:24px;
-      box-shadow:var(--shadow);
-    }
-
-    .contact-grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:16px;
-      margin-top:16px;
-    }
-
-    .contact-item{
-      background:rgba(255,255,255,0.03);
-      border-radius:16px;
-      padding:16px;
-      border:1px solid rgba(255,255,255,0.04);
-    }
-
-    .contact-label{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      color:var(--muted);
-      margin-bottom:6px;
-    }
-
-    .footer{
-      padding:28px 0 40px;
-      color:var(--muted);
-      font-size:14px;
-    }
-    .tech-section {
-  margin-top: 30px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-    .tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 16px;
-}
-
-.tech-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 16px;
-  padding: 16px;
-  transition: all 0.3s ease;
-  cursor: default;
-}
-
-.tech-card h5 {
-  margin: 0 0 6px;
-  font-size: 15px;
-  color: #60a5fa;
-}
-
-.tech-card p {
-  margin: 0;
-  font-size: 13px;
-  color: #d7e4fb;
-  line-height: 1.5;
-}
-
-/* 🔥 hover effect */
-.tech-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(96,165,250,0.4);
-  background: rgba(96,165,250,0.05);
-}
-.cert-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.cert-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 16px;
-  padding: 18px;
-  transition: all 0.3s ease;
-}
-
-.cert-card h4 {
-  margin: 0 0 6px;
-  color: #60a5fa;
-}
-
-.cert-card p {
-  margin: 0 0 6px;
-  font-size: 14px;
-  color: #d7e4fb;
-}
-
-.cert-meta {
-  font-size: 12px;
-  color: #9fb0d1;
-}
-
-/* hover */
-.cert-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(96,165,250,0.4);
-  background: rgba(96,165,250,0.05);
-}
-.how-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 18px;
-  margin-top: 20px;
-}
-
-.how-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 16px;
-  padding: 18px;
-  transition: all 0.3s ease;
-}
-
-.how-card h4 {
-  margin-bottom: 8px;
-  color: #60a5fa;
-}
-
-.how-card p {
-  margin: 0;
-  color: #d7e4fb;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.how-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(96,165,250,0.4);
-  background: rgba(96,165,250,0.05);
-}
-    @media (max-width: 980px){
-      .impact-grid{
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .process-timeline{
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .contact-grid{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 720px){
-      .hero-card{
-        grid-template-columns:1fr;
-        text-align:center;
-      }
-      .hero-photo{
-        margin:0 auto;
-      }
-      .hero-actions{
-        justify-content:center;
-      }
-      .story-grid,
-      .before-after{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 560px){
-      .impact-grid,
-      .process-timeline{
-        grid-template-columns:1fr;
-      }
-      .nav-wrap{
-        gap:12px;
-        align-items:flex-start;
-        flex-direction:column;
-      }
-      .nav-links{
-        gap:12px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <nav class="nav">
-    <div class="container nav-wrap">
-      <div class="brand">Ashir Zahid</div>
-      <div class="nav-links">
-        <a href="#impact">Impact</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </div>
+<title>Ashir Zahid</title>
+<style>
+  :root{
+    /* Fluent-inspired neutrals */
+    --bg:#faf9f8;
+    --surface:#ffffff;
+    --surface-2:#f3f2f1;
+    --border:#e1dfdd;
+    --border-strong:#c8c6c4;
+    --text:#201f1e;
+    --text-2:#605e5c;
+    --text-3:#8a8886;
+    /* Microsoft product palette */
+    --dynamics:#0f6cbd;
+    --dynamics-tint:#eff6fc;
+    --power-apps:#742774;
+    --power-apps-tint:#f5eef5;
+    --power-automate:#0066ff;
+    --power-automate-tint:#eaf1ff;
+    --power-bi:#b8860b;
+    --power-bi-tint:#fbf3de;
+    --power-pages:#038387;
+    --power-pages-tint:#e6f4f4;
+    --azure:#0089d6;
+    --azure-tint:#e5f4fc;
+    --success:#107c10;
+    --success-tint:#dff6dd;
+    --warning:#8a5a00;
+    --warning-tint:#fdf3e4;
+    --danger:#a4262c;
+    --danger-tint:#fde7e9;
+    --shadow:0 1.6px 3.6px rgba(0,0,0,0.11), 0 0.3px 0.9px rgba(0,0,0,0.09);
+    --shadow-lg:0 6.4px 14.4px rgba(0,0,0,0.13), 0 1.2px 3.6px rgba(0,0,0,0.10);
+    --font:'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono:'Cascadia Code', Consolas, 'Courier New', monospace;
+    --sidebar-w:236px;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--text); font-family:var(--font); font-size:14.5px; line-height:1.6; }
+  a{ color:var(--dynamics); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  img{ max-width:100%; display:block; }
+  h1,h2,h3,h4,h5{ margin:0; font-family:var(--font); }
+  p{ margin:0; }
+
+  /* Top command bar */
+  .topbar{ background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:60; }
+  .topbar-wrap{ display:flex; align-items:center; justify-content:space-between; padding:0 20px; height:48px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:14.5px; white-space:nowrap; }
+  .brand-tile{ width:22px; height:22px; background:var(--dynamics); border-radius:3px; flex:none; }
+  .brand-sub{ color:var(--text-3); font-weight:400; }
+  .cmd-row{ display:flex; }
+  .cmd{ display:flex; align-items:center; gap:8px; padding:0 14px; height:48px; font-size:13px; font-weight:600; color:var(--text); border-left:1px solid var(--border); white-space:nowrap; }
+  .cmd:hover{ background:var(--surface-2); text-decoration:none; }
+  .cmd-dot{ width:8px; height:8px; border-radius:2px; flex:none; }
+
+  /* Shell layout */
+  .shell{ display:flex; align-items:flex-start; max-width:1320px; margin:0 auto; }
+  .sitemap{ width:var(--sidebar-w); flex:none; position:sticky; top:48px; height:calc(100vh - 48px); overflow-y:auto; padding:14px 10px; border-right:1px solid var(--border); }
+  .site-label{ font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--text-3); font-weight:600; padding:8px 10px 6px; }
+  .site-link{ display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:3px; color:var(--text); font-size:13.5px; font-weight:600; }
+  .site-link:hover{ background:var(--surface-2); text-decoration:none; }
+  .site-tile{ width:16px; height:16px; border-radius:3px; flex:none; }
+  .mobile-tabs{ display:none; }
+  .main{ flex:1; min-width:0; padding:28px 32px 60px; }
+
+  /* Profile / record header */
+  .profile-card{ background:var(--surface); border:1px solid var(--border); border-radius:4px; box-shadow:var(--shadow); padding:26px 28px; margin-bottom:28px; }
+  .profile-top{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .monogram{ width:64px; height:64px; border-radius:4px; background:var(--dynamics); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:24px; flex:none; }
+  h1.name{ font-size:26px; font-weight:700; }
+  .role-line{ color:var(--text-2); font-size:14.5px; margin-top:2px; }
+  .field-row{ display:flex; flex-wrap:wrap; gap:0; margin-top:20px; border-top:1px solid var(--border); }
+  .field{ flex:1; min-width:180px; padding:14px 20px 0 0; }
+  .field-label{ font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-3); font-weight:600; margin-bottom:5px; }
+  .field-value{ font-size:14px; font-weight:600; }
+  .field-value .live{ display:inline-block; width:7px; height:7px; background:var(--success); border-radius:50%; margin-right:6px; }
+  .profile-copy{ margin-top:18px; padding-top:18px; border-top:1px solid var(--border); color:var(--text-2); font-size:14px; max-width:760px; }
+  .action-row{ display:flex; gap:10px; margin-top:18px; flex-wrap:wrap; }
+  .btn{ display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:3px; border:1px solid var(--border-strong); background:var(--surface); font-weight:600; font-size:13.5px; color:var(--text); }
+  .btn:hover{ background:var(--surface-2); text-decoration:none; }
+  .btn-primary{ background:var(--dynamics); border-color:var(--dynamics); color:#fff; }
+  .btn-primary:hover{ background:#106ebe; }
+
+  /* Section chrome */
+  .section{ margin-bottom:34px; scroll-margin-top:60px; }
+  .section-head{ display:flex; align-items:baseline; gap:10px; padding-bottom:10px; border-bottom:2px solid var(--dynamics); margin-bottom:18px; }
+  .section-head h2{ font-size:19px; font-weight:700; }
+  .section-head .count{ color:var(--text-3); font-size:12.5px; font-family:var(--font-mono); }
+  .section-copy{ color:var(--text-2); font-size:13.5px; margin:-6px 0 18px; max-width:700px; }
+
+  .reveal{ transition:opacity .5s ease, transform .5s ease; }
+  .reveal.pending{ opacity:0; transform:translateY(14px); }
+
+  /* About quote */
+  .about-block{ background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--dynamics); border-radius:4px; box-shadow:var(--shadow); padding:20px 24px; font-size:17px; font-weight:600; font-style:italic; color:var(--text); max-width:820px; }
+
+  /* KPI tiles */
+  .kpi-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .kpi{ background:var(--surface); border:1px solid var(--border); border-top:3px solid var(--success); border-radius:4px; box-shadow:var(--shadow); padding:16px 18px; }
+  .kpi-num{ font-size:26px; font-weight:700; color:var(--text); font-family:var(--font-mono); font-variant-numeric:tabular-nums; }
+  .kpi-title{ font-weight:700; font-size:13px; margin:6px 0 4px; }
+  .kpi-text{ color:var(--text-2); font-size:12px; }
+
+  /* Copilot / AI card */
+  .copilot-card{ background:var(--surface); border:1px solid var(--border); border-radius:4px; box-shadow:var(--shadow); overflow:hidden; }
+  .copilot-bar{ height:4px; background:linear-gradient(90deg,#0078d4,#8764b8,#e3008c); }
+  .copilot-body{ padding:26px 28px; }
+  .copilot-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:start; }
+  .tag-line{ font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--power-apps); display:block; margin-bottom:8px; }
+  .copilot-card h3{ font-size:20px; font-weight:700; margin-bottom:16px; }
+  .ai-step{ padding:12px 0; border-top:1px solid var(--border); }
+  .ai-step:first-child{ border-top:none; padding-top:0; }
+  .ai-step h4{ margin:0 0 5px; font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--power-apps); }
+  .ai-step p{ color:var(--text-2); font-size:13.5px; }
+  .ai-callout{ margin-top:14px; padding:12px 15px; background:var(--power-apps-tint); border-radius:3px; font-size:13px; color:#4a1e4a; }
+  .ai-tags{ display:flex; flex-wrap:wrap; gap:7px; margin-top:16px; }
+  .ai-tag{ padding:5px 10px; border:1px solid var(--power-apps); color:var(--power-apps); border-radius:3px; font-family:var(--font-mono); font-size:11px; background:var(--power-apps-tint); }
+
+  /* Certification badges */
+  .cert-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px; }
+  .cert-badge{ background:var(--surface); border:1px solid var(--border); border-radius:4px; box-shadow:var(--shadow); padding:18px 14px; text-align:center; }
+  .cert-ring{ width:58px; height:58px; border-radius:50%; margin:0 auto 12px; display:flex; align-items:center; justify-content:center; background:conic-gradient(var(--ring-color,var(--dynamics)) 0 100%, var(--border) 0 0); position:relative; }
+  .cert-ring::after{ content:""; position:absolute; inset:5px; border-radius:50%; background:var(--surface); }
+  .cert-ring span{ position:relative; z-index:1; font-family:var(--font-mono); font-weight:700; font-size:12px; }
+  .cert-name{ font-size:12.5px; font-weight:600; margin-bottom:5px; line-height:1.35; }
+  .cert-meta{ font-size:11px; color:var(--text-3); font-family:var(--font-mono); }
+  .cert-badge.is-fundamentals{ --ring-color:var(--power-pages); }
+  .cert-badge.is-associate{ --ring-color:var(--dynamics); }
+  .cert-badge.is-expired{ --ring-color:var(--danger); }
+  .cert-badge.is-expired .cert-meta{ color:var(--danger); }
+
+  /* Timeline */
+  .timeline{ background:var(--surface); border:1px solid var(--border); border-radius:4px; box-shadow:var(--shadow); }
+  .tl-item{ display:grid; grid-template-columns:34px 1fr 130px; gap:16px; padding:18px 22px; border-bottom:1px solid var(--border); }
+  .tl-item:last-child{ border-bottom:none; }
+  .tl-dot{ width:34px; height:34px; border-radius:50%; background:var(--dynamics-tint); color:var(--dynamics); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; }
+  .tl-item.is-edu .tl-dot{ background:var(--surface-2); color:var(--text-2); }
+  .tl-content h4{ font-size:15px; font-weight:700; margin-bottom:2px; }
+  .tl-role{ color:var(--dynamics); font-size:12px; font-weight:600; margin-bottom:7px; }
+  .tl-content p{ color:var(--text-2); font-size:13px; max-width:600px; }
+  .tl-when{ text-align:right; color:var(--text-3); font-size:12px; font-family:var(--font-mono); padding-top:3px; }
+
+  /* View grid (project index) */
+  .view-toolbar{ display:flex; align-items:center; justify-content:space-between; background:var(--surface-2); border:1px solid var(--border); border-bottom:none; border-radius:4px 4px 0 0; padding:9px 16px; }
+  .view-name{ font-size:13px; font-weight:700; }
+  .view-count{ font-size:12px; color:var(--text-3); font-family:var(--font-mono); }
+  .view-grid{ width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--border); border-radius:0 0 4px 4px; overflow:hidden; margin-bottom:32px; font-size:13px; }
+  .view-grid th{ text-align:left; padding:10px 14px; background:var(--surface-2); border-bottom:1px solid var(--border); font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--text-3); font-weight:700; }
+  .view-grid td{ padding:12px 14px; border-bottom:1px solid var(--border); vertical-align:top; }
+  .view-grid tr:last-child td{ border-bottom:none; }
+  .view-grid tr:hover td{ background:var(--dynamics-tint); }
+  .view-grid a{ font-weight:600; }
+  .stack-mini{ font-family:var(--font-mono); font-size:11.5px; color:var(--text-2); }
+  .outcome-cell{ font-weight:700; color:var(--success); }
+  .row-num{ color:var(--text-3); font-family:var(--font-mono); }
+
+  /* Record cards (case studies) */
+  .record{ background:var(--surface); border:1px solid var(--border); border-radius:4px; box-shadow:var(--shadow); margin-bottom:26px; }
+  .record-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:20px; padding:22px 26px; border-bottom:1px solid var(--border); flex-wrap:wrap; }
+  .record-cat{ font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--dynamics); display:block; margin-bottom:6px; }
+  .record h3{ font-size:19px; font-weight:700; margin-bottom:6px; }
+  .record-meta{ color:var(--text-3); font-size:12px; font-family:var(--font-mono); }
+  .record-stat{ background:var(--success-tint); border:1px solid var(--success); border-radius:4px; padding:10px 16px; text-align:center; flex:none; }
+  .record-stat .n{ font-size:20px; font-weight:700; color:var(--success); font-family:var(--font-mono); }
+  .record-stat .c{ font-size:10px; text-transform:uppercase; letter-spacing:.04em; color:#0e5c0e; margin-top:2px; }
+  .record-body{ padding:22px 26px; }
+  .stack-row{ display:flex; flex-wrap:wrap; gap:7px; margin-bottom:18px; }
+  .stack-chip{ padding:5px 10px; border-radius:3px; font-family:var(--font-mono); font-size:11px; font-weight:600; border:1px solid transparent; }
+  .my-role{ color:var(--text-2); font-size:13.5px; padding-bottom:18px; margin-bottom:18px; border-bottom:1px solid var(--border); }
+  .field-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:4px; overflow:hidden; margin-bottom:18px; }
+  .field-cell{ background:var(--surface); padding:15px 18px; }
+  .field-cell h4{ font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--dynamics); margin-bottom:7px; }
+  .field-cell p{ color:var(--text-2); font-size:13px; }
+
+  .before-after{ display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--border); border-radius:4px; overflow:hidden; margin-bottom:18px; }
+  .ba-col{ padding:16px 20px; }
+  .ba-col.before{ background:var(--danger-tint); }
+  .ba-col.after{ background:var(--success-tint); }
+  .ba-label{ font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; font-weight:700; margin-bottom:8px; }
+  .ba-col.before .ba-label{ color:var(--danger); }
+  .ba-col.after .ba-label{ color:var(--success); }
+  .ba-col h4{ font-size:14.5px; font-weight:700; margin-bottom:9px; }
+  .ba-list{ padding-left:17px; margin:0; color:var(--text); font-size:12.5px; }
+  .ba-list li{ margin-bottom:6px; }
+
+  .process-strip{ display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:18px; }
+  .p-step{ background:var(--surface-2); border-radius:4px; padding:12px; }
+  .p-num{ width:24px; height:24px; border-radius:50%; background:var(--dynamics); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-weight:700; font-size:11px; margin-bottom:9px; }
+  .p-step h5{ font-size:12.5px; font-weight:700; margin-bottom:4px; }
+  .p-step p{ font-size:11.5px; color:var(--text-2); line-height:1.5; }
+
+  .tech-note{ border-top:1px solid var(--border); padding-top:18px; margin-bottom:18px; }
+  .tech-note h4{ font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--dynamics); margin-bottom:8px; }
+  .tech-note > p{ color:var(--text-2); font-size:13px; margin-bottom:14px; }
+  .tech-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:4px; overflow:hidden; }
+  .tech-cell{ background:var(--surface); padding:12px 14px; }
+  .tech-cell h5{ font-size:12.5px; font-weight:700; color:var(--dynamics); margin-bottom:4px; }
+  .tech-cell p{ font-size:11.5px; color:var(--text-2); line-height:1.5; }
+
+  .ui-mock{ border:1px solid var(--border); border-radius:4px; overflow:hidden; }
+  .ui-mock svg{ display:block; width:100%; height:auto; }
+  .ui-mock figcaption{ padding:8px 14px; font-size:10.5px; color:var(--text-3); font-style:italic; text-align:center; font-family:var(--font-mono); border-top:1px solid var(--border); background:var(--surface-2); }
+
+  /* Skills */
+  .skills-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+  .skill-group{ background:var(--surface); border:1px solid var(--border); border-radius:4px; box-shadow:var(--shadow); padding:18px; }
+  .skill-group h4{ font-size:14px; font-weight:700; margin-bottom:12px; }
+  .skills-wrap{ display:flex; flex-wrap:wrap; gap:7px; }
+  .skill{ padding:6px 10px; border-radius:3px; font-family:var(--font-mono); font-size:11px; font-weight:600; }
+
+  /* How I work */
+  .how-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
+  .how-card{ background:var(--surface); border:1px solid var(--border); border-radius:4px; box-shadow:var(--shadow); padding:18px; }
+  .how-card h4{ font-size:14px; font-weight:700; margin-bottom:7px; color:var(--dynamics); }
+  .how-card p{ color:var(--text-2); font-size:13px; line-height:1.6; }
+
+  /* Contact compose card */
+  .compose-card{ background:var(--surface); border:1px solid var(--border); border-radius:4px; box-shadow:var(--shadow); }
+  .compose-head{ background:var(--surface-2); padding:10px 20px; border-bottom:1px solid var(--border); font-size:12.5px; font-weight:700; color:var(--text-2); }
+  .compose-fields{ padding:6px 20px; }
+  .compose-field{ display:flex; align-items:center; padding:13px 0; border-bottom:1px solid var(--border); gap:16px; }
+  .compose-field:last-child{ border-bottom:none; }
+  .compose-field-label{ width:90px; flex:none; font-size:12px; color:var(--text-3); font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+  .compose-field-value{ font-size:14.5px; font-weight:600; }
+
+  .footer{ padding:22px 32px 50px; color:var(--text-3); font-size:12px; font-family:var(--font-mono); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+
+  /* Accessibility helpers */
+  .skip-link{ position:absolute; left:-9999px; top:0; z-index:200; background:var(--dynamics); color:#fff; padding:10px 18px; font-weight:600; font-size:13px; border-radius:0 0 4px 0; }
+  .skip-link:focus{ left:0; }
+  :focus-visible{ outline:2px solid var(--dynamics); outline-offset:2px; }
+
+  /* Nav active state (scrollspy) */
+  .site-link.is-active{ background:var(--dynamics-tint); color:var(--dynamics); }
+  .mobile-tabs a.is-active{ background:var(--dynamics-tint); color:var(--dynamics); }
+
+  /* Case-study filter chips */
+  .filter-row{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+  .filter-chip{ appearance:none; -webkit-appearance:none; padding:7px 14px; border-radius:16px; border:1px solid var(--border-strong); background:var(--surface); font-family:inherit; font-size:12.5px; font-weight:600; color:var(--text-2); cursor:pointer; }
+  .filter-chip:hover{ background:var(--surface-2); }
+  .filter-chip.is-active{ background:var(--dynamics); border-color:var(--dynamics); color:#fff; }
+
+  /* Command bar buttons that are actual <button> elements */
+  button.cmd{ appearance:none; -webkit-appearance:none; background:none; border:none; border-left:1px solid var(--border); font-family:inherit; cursor:pointer; }
+  .cmd-row{ overflow-x:auto; }
+  .cmdk-kbd{ font-family:var(--font-mono); font-size:10px; color:var(--text-3); border:1px solid var(--border-strong); border-radius:3px; padding:1px 5px; margin-left:6px; }
+
+  /* Command palette (Ctrl/Cmd+K quick navigation) */
+  .cmdk-overlay{ position:fixed; inset:0; background:rgba(32,31,30,.45); z-index:200; display:flex; justify-content:center; align-items:flex-start; padding-top:11vh; }
+  .cmdk-overlay[hidden]{ display:none !important; }
+  .cmdk-panel{ background:var(--surface); width:min(560px,92vw); border-radius:6px; box-shadow:var(--shadow-lg); overflow:hidden; max-height:70vh; display:flex; flex-direction:column; }
+  .cmdk-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 16px; border-bottom:1px solid var(--border); flex:none; }
+  .cmdk-head span{ font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--text-3); }
+  .cmdk-close{ appearance:none; -webkit-appearance:none; background:none; border:none; font-size:16px; line-height:1; color:var(--text-3); cursor:pointer; padding:5px 9px; border-radius:3px; }
+  .cmdk-close:hover{ background:var(--surface-2); color:var(--text); }
+  .cmdk-input{ border:none; border-bottom:1px solid var(--border); padding:16px 20px; font-size:15px; font-family:inherit; color:var(--text); outline:none; flex:none; }
+  .cmdk-list{ overflow-y:auto; padding:6px; }
+  .cmdk-item{ display:block; width:100%; text-align:left; padding:10px 14px; border:none; background:none; font-family:inherit; font-size:13.5px; color:var(--text); border-radius:4px; cursor:pointer; }
+  .cmdk-item.is-active, .cmdk-item:hover{ background:var(--dynamics-tint); color:var(--dynamics); }
+  .cmdk-item strong{ font-weight:700; }
+  .cmdk-hint{ padding:8px 20px; border-top:1px solid var(--border); font-size:11px; color:var(--text-3); font-family:var(--font-mono); flex:none; }
+
+  /* Testimonials feed (styled like a D365 record timeline of notes) */
+  .feed{ background:var(--surface); border:1px solid var(--border); border-radius:4px; box-shadow:var(--shadow); }
+  .feed-item{ display:grid; grid-template-columns:44px 1fr; gap:14px; padding:20px 24px; border-bottom:1px solid var(--border); }
+  .feed-item:last-child{ border-bottom:none; }
+  .feed-avatar{ width:44px; height:44px; border-radius:50%; background:var(--dynamics-tint); color:var(--dynamics); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; flex:none; }
+  .feed-head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; margin-bottom:6px; }
+  .feed-name{ font-weight:700; font-size:14px; color:var(--text); }
+  .feed-role{ color:var(--text-2); font-size:12px; }
+  .feed-meta{ margin-left:auto; font-size:11px; color:var(--text-3); font-family:var(--font-mono); white-space:nowrap; }
+  .feed-tag{ display:inline-block; padding:2px 8px; border-radius:3px; background:var(--success-tint); color:var(--success); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; margin-bottom:9px; }
+  .feed-tag.is-client{ background:var(--power-apps-tint); color:var(--power-apps); }
+  .feed-tag.is-peer{ background:var(--azure-tint); color:var(--azure); }
+  .feed-quote{ color:var(--text); font-size:13.5px; line-height:1.65; margin-bottom:8px; }
+  .feed-source{ font-size:11.5px; }
+  .feed-source a{ color:var(--text-3); }
+
+  @media (max-width:980px){
+    .sitemap{ display:none; }
+    .mobile-tabs{ display:flex; gap:4px; overflow-x:auto; background:var(--surface); border-bottom:1px solid var(--border); padding:8px 16px; position:sticky; top:48px; z-index:55; }
+    .mobile-tabs a{ flex:none; padding:7px 12px; border-radius:3px; font-size:12.5px; font-weight:600; color:var(--text-2); white-space:nowrap; }
+    .mobile-tabs a:hover{ background:var(--surface-2); text-decoration:none; }
+    .main{ padding:20px 18px 50px; }
+    .kpi-row{ grid-template-columns:repeat(2,1fr); }
+    .copilot-grid{ grid-template-columns:1fr; }
+    .process-strip{ grid-template-columns:repeat(2,1fr); }
+    .cmd .cmd-label{ display:none; }
+  }
+  @media (max-width:720px){
+    .field-grid, .before-after, .field-row, .tech-grid{ grid-template-columns:1fr !important; }
+    .tl-item{ grid-template-columns:30px 1fr; }
+    .tl-when{ grid-column:2; text-align:left; padding-top:0; }
+    .record-head{ flex-direction:column; }
+    .view-grid{ display:block; overflow-x:auto; white-space:nowrap; }
+  }
+  @media (max-width:560px){
+    .kpi-row{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal, .reveal.pending{ transition:none; opacity:1; transform:none; }
+    *{ scroll-behavior:auto !important; }
+  }
+  @media print{
+    .topbar, .sitemap, .mobile-tabs, .action-row, .filter-row, .cmdk-overlay, .skip-link{ display:none !important; }
+    body{ background:#fff; font-size:11px; }
+    .shell{ display:block; max-width:100%; }
+    .main{ padding:0 16px !important; }
+    .profile-card, .record, .kpi, .cert-badge, .timeline, .copilot-card, .how-card, .skill-group, .compose-card, .feed-item{ box-shadow:none !important; break-inside:avoid; }
+    .section{ margin-bottom:16px; scroll-margin-top:0; }
+    a{ color:#000 !important; text-decoration:none !important; }
+  }
+</style>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="topbar">
+  <div class="topbar-wrap">
+    <div class="brand"><span class="brand-tile"></span>Ashir Zahid <span class="brand-sub">— Portfolio</span></div>
+    <div class="cmd-row">
+      <button type="button" class="cmd" id="cmdk-trigger"><span class="cmd-dot" style="background:var(--power-pages)"></span><span class="cmd-label">Search<span class="cmdk-kbd">Ctrl K</span></span></button>
+      <a class="cmd" href="mailto:ashirzahid4444@gmail.com?subject=Portfolio%20Inquiry"><span class="cmd-dot" style="background:var(--dynamics)"></span><span class="cmd-label">New Message</span></a>
+      <a class="cmd" href="https://www.linkedin.com/in/ashirzahid/" target="_blank" rel="noopener"><span class="cmd-dot" style="background:var(--power-automate)"></span><span class="cmd-label">Connect</span></a>
+      <button type="button" class="cmd" id="print-btn"><span class="cmd-dot" style="background:var(--azure)"></span><span class="cmd-label">Print</span></button>
+      <a class="cmd" href="mailto:ashirzahid4444@gmail.com?subject=Resume%20Request"><span class="cmd-dot" style="background:var(--power-bi)"></span><span class="cmd-label">Request Résumé</span></a>
     </div>
+  </div>
+</div>
+
+<div class="mobile-tabs">
+  <a href="#impact">Impact</a><a href="#ai">AI</a><a href="#certifications">Certs</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#testimonials">Feedback</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+</div>
+
+<div class="shell">
+  <nav class="sitemap">
+    <div class="site-label">Site Map</div>
+    <a class="site-link" href="#impact"><span class="site-tile" style="background:var(--success)"></span>Impact</a>
+    <a class="site-link" href="#ai"><span class="site-tile" style="background:var(--power-apps)"></span>AI Spotlight</a>
+    <a class="site-link" href="#certifications"><span class="site-tile" style="background:var(--dynamics)"></span>Certifications</a>
+    <a class="site-link" href="#experience"><span class="site-tile" style="background:var(--azure)"></span>Experience</a>
+    <a class="site-link" href="#projects"><span class="site-tile" style="background:var(--power-automate)"></span>Case Studies</a>
+    <a class="site-link" href="#testimonials"><span class="site-tile" style="background:var(--success)"></span>Testimonials</a>
+    <a class="site-link" href="#skills"><span class="site-tile" style="background:var(--power-pages)"></span>Skills</a>
+    <a class="site-link" href="#how-i-work"><span class="site-tile" style="background:var(--power-bi)"></span>How I Work</a>
+    <a class="site-link" href="#contact"><span class="site-tile" style="background:var(--text-3)"></span>Contact</a>
   </nav>
 
-  <main class="container">
-    <section class="hero">
-      <div class="hero-card">
-        <div class="hero-photo">
-          <img src="Ashir_Zahid.JPG" alt="Ashir Zahid">
-        </div>
+  <main class="main" id="main-content">
+
+    <div class="profile-card">
+      <div class="profile-top">
+        <div class="monogram">AZ</div>
         <div>
-          <span class="eyebrow">Dynamics 365 CE & Power Platform</span>
-          <h1>Ashir Zahid</h1>
-          <p class="hero-sub">Technical Consultant focused on simplifying business processes, improving visibility, and reducing manual work through practical CRM and automation solutions.</p>
-          <p class="hero-copy">
-            I work on Microsoft Dynamics 365 and Power Platform solutions that solve real business problems — from sales process improvement to case management, AI-driven automation, system integration, and enterprise data migration.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="Ashir Zahid (D365 & PowerPlatform).pdf" download>Download Resume</a>
-            <a class="btn" href="https://www.linkedin.com/in/ashirzahid/" target="_blank" rel="noopener">View LinkedIn</a>
+          <h1 class="name">Ashir Zahid</h1>
+          <div class="role-line">Dynamics 365 CE &amp; Power Platform Technical Consultant</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <div class="field-label">Currently</div>
+          <div class="field-value"><span class="live"></span>Power Platform Technical Consultant, INC Group</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Experience</div>
+          <div class="field-value">6 years — Dynamics 365 &amp; Power Platform</div>
+        </div>
+        <div class="field">
+          <div class="field-label">Location</div>
+          <div class="field-value">Riyadh, Saudi Arabia — open to relocation</div>
+        </div>
+      </div>
+      <p class="profile-copy">I work on Microsoft Dynamics 365 and Power Platform solutions that solve real business problems — sales process improvement, case management, AI-driven automation, system integration, and enterprise data migration. This page walks through five of those problems in depth: what was broken, what I changed, and what it was worth.</p>
+      <div class="action-row">
+        <a class="btn btn-primary" href="mailto:ashirzahid4444@gmail.com?subject=Portfolio%20Inquiry">Get in Touch</a>
+        <a class="btn" href="https://www.linkedin.com/in/ashirzahid/" target="_blank" rel="noopener">View LinkedIn</a>
+        <a class="btn" href="mailto:ashirzahid4444@gmail.com?subject=Resume%20Request">Request Résumé</a>
+      </div>
+    </div>
+
+    <section class="section reveal" id="about">
+      <p class="about-block">"I don't start with the platform — I start with wherever people are still doing the work by hand. Dynamics 365 and Power Platform are just the tools I use to make that work disappear."</p>
+    </section>
+
+    <section class="section reveal" id="impact">
+      <div class="section-head"><h2>Key Impact</h2></div>
+      <p class="section-copy">A quick view of the business outcomes delivered across CRM, automation, integration, and data projects.</p>
+      <div class="kpi-row">
+        <div class="kpi"><div class="kpi-num" data-count-to="80" data-suffix="%">80%</div><div class="kpi-title">Less Manual BOQ Work</div><div class="kpi-text">Replaced repetitive Excel-based BOQ handling with AI-driven automation.</div></div>
+        <div class="kpi"><div class="kpi-num" data-count-to="25" data-suffix="%">25%</div><div class="kpi-title">Faster Sales Cycle</div><div class="kpi-text">Improved lead and opportunity flow with a more structured sales process.</div></div>
+        <div class="kpi"><div class="kpi-num" data-count-to="500" data-suffix="K+">500K+</div><div class="kpi-title">Records Migrated</div><div class="kpi-text">Moved large volumes of legacy data with zero downtime.</div></div>
+        <div class="kpi"><div class="kpi-num" data-count-to="40" data-suffix="%">40%</div><div class="kpi-title">Reporting Time Saved</div><div class="kpi-text">Reduced manual reporting effort through better visibility and automation.</div></div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="ai">
+      <div class="section-head"><h2>AI in My Work — a Real Automation Problem</h2></div>
+      <p class="section-copy">Not a demo — production automation that estimators use every day. Here's the specific problem, how I approached it, and what changed.</p>
+      <div class="copilot-card">
+        <div class="copilot-bar"></div>
+        <div class="copilot-body">
+          <div class="copilot-grid">
+            <div>
+              <span class="tag-line">AI Builder · Power Automate · Copilot</span>
+              <h3>Automating Bill of Quantities (BOQ) Classification</h3>
+              <div class="ai-step"><h4>The Problem</h4><p>Estimators were manually reading hundreds of BOQ line items per project from unstructured Excel exports, categorizing each one by hand, then re-keying them into supplier packages before pricing could even start. It was slow, repetitive, and easy to get wrong — and every downstream step waited on it.</p></div>
+              <div class="ai-step"><h4>The Approach</h4><p>I trained an AI Builder model on BOQ item descriptions to classify each line into the correct category automatically, then wired it into a Power Automate flow that packages classified items and routes them into a Model-Driven App for estimator review. Microsoft Copilot's custom prompts summarize supplier responses so estimators can compare quotations faster.</p></div>
+              <div class="ai-step"><h4>The Result</h4><p>Manual classification effort dropped by up to 80%, freeing estimators to focus on pricing and negotiation instead of data entry — the same pattern I'd apply to any high-volume manual-classification problem: AI Builder for recognition, Power Automate for orchestration, and a human review step so judgment stays with the estimator, not the model.</p></div>
+              <div class="ai-callout">Estimators still review every AI-suggested category before it's finalized — the goal was removing repetitive work, not removing judgment.</div>
+              <div class="ai-tags">
+                <span class="ai-tag">AI Builder</span><span class="ai-tag">Microsoft Copilot</span><span class="ai-tag">Power Automate</span><span class="ai-tag">Human-in-the-loop review</span>
+              </div>
+            </div>
+            <figure class="ui-mock">
+              <svg viewBox="0 0 400 420" role="img" aria-label="Diagram of the AI BOQ classification flow">
+                <rect x="0" y="0" width="400" height="420" fill="#faf9f8"/>
+                <g font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#605e5c">
+                  <rect x="20" y="16" width="360" height="58" rx="4" fill="#ffffff" stroke="#c8c6c4"/>
+                  <text x="34" y="40" fill="#201f1e" font-size="13">BOQ Excel Upload</text>
+                  <text x="34" y="58">Unstructured line items</text>
+                  <line x1="200" y1="74" x2="200" y2="98" stroke="#201f1e" stroke-width="1.5"/>
+                  <polygon points="200,102 195,92 205,92" fill="#201f1e"/>
+                  <rect x="20" y="104" width="360" height="58" rx="4" fill="#f5eef5" stroke="#742774"/>
+                  <text x="34" y="128" fill="#742774" font-size="13">AI Builder: Classify Items</text>
+                  <text x="34" y="146" fill="#5c2060">Concrete · Steel · Electrical · Finishes</text>
+                  <line x1="200" y1="162" x2="200" y2="186" stroke="#742774" stroke-width="1.5"/>
+                  <polygon points="200,190 195,180 205,180" fill="#742774"/>
+                  <rect x="20" y="192" width="360" height="58" rx="4" fill="#ffffff" stroke="#c8c6c4"/>
+                  <text x="34" y="216" fill="#201f1e" font-size="13">Power Automate: Route &amp; Package</text>
+                  <text x="34" y="234">Supplier packages generated</text>
+                  <line x1="200" y1="250" x2="200" y2="274" stroke="#201f1e" stroke-width="1.5"/>
+                  <polygon points="200,278 195,268 205,268" fill="#201f1e"/>
+                  <rect x="20" y="280" width="360" height="58" rx="4" fill="#ffffff" stroke="#c8c6c4"/>
+                  <text x="34" y="304" fill="#201f1e" font-size="13">Estimator Review (Model-Driven App)</text>
+                  <text x="34" y="322">Human confirms every category</text>
+                  <line x1="200" y1="338" x2="200" y2="362" stroke="#201f1e" stroke-width="1.5"/>
+                  <polygon points="200,366 195,356 205,356" fill="#201f1e"/>
+                  <rect x="20" y="368" width="360" height="42" rx="4" fill="#f5eef5" stroke="#742774"/>
+                  <text x="34" y="393" fill="#742774" font-size="13">Copilot: Quotation Comparison</text>
+                </g>
+              </svg>
+              <figcaption>Conceptual flow diagram — recreated for portfolio purposes.</figcaption>
+            </figure>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="impact">
-      <div class="section-head">
-        <span class="eyebrow">Highlights</span>
-        <h2>Key Impact</h2>
-        <p class="section-copy">
-          A quick view of the business outcomes delivered across CRM, automation, integration, and data projects.
-        </p>
+    <section class="section reveal" id="certifications">
+      <div class="section-head"><h2>Certifications</h2></div>
+      <p class="section-copy">Microsoft certifications validating expertise in Dynamics 365 and Power Platform development and solution delivery.</p>
+      <div class="cert-grid">
+        <div class="cert-badge is-associate"><div class="cert-ring"><span>PL-400</span></div><div class="cert-name">Power Platform Developer Associate</div><div class="cert-meta">Microsoft · 2027</div></div>
+        <div class="cert-badge is-associate"><div class="cert-ring"><span>PL-200</span></div><div class="cert-name">Power Platform Functional Consultant Associate</div><div class="cert-meta">Microsoft · 2027</div></div>
+        <div class="cert-badge is-expired"><div class="cert-ring"><span>MB-210</span></div><div class="cert-name">Dynamics 365 Sales Functional Consultant Associate</div><div class="cert-meta">Expired 2022</div></div>
+        <div class="cert-badge is-fundamentals"><div class="cert-ring"><span>MB-910</span></div><div class="cert-name">Dynamics 365 Fundamentals</div><div class="cert-meta">Microsoft</div></div>
+        <div class="cert-badge is-fundamentals"><div class="cert-ring"><span>PL-900</span></div><div class="cert-name">Power Platform Fundamentals</div><div class="cert-meta">Microsoft</div></div>
       </div>
+    </section>
 
-      <div class="impact-grid">
-        <div class="impact-card">
-          <div class="impact-number">80%</div>
-          <div class="impact-title">Less Manual BOQ Work</div>
-          <div class="impact-text">Replaced repetitive Excel-based BOQ handling with AI-driven automation.</div>
+    <section class="section reveal" id="experience">
+      <div class="section-head"><h2>Experience</h2></div>
+      <p class="section-copy">Three roles, one thread — Dynamics 365 and Power Platform delivery across construction, insurance, and enterprise services clients.</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot">①</div>
+          <div class="tl-content">
+            <h4>INC Group — Riyadh, Saudi Arabia</h4>
+            <div class="tl-role">Power Platform Technical Consultant</div>
+            <p>Leading Dynamics 365 and Power Platform delivery for a digital transformation initiative across estimation, licensing, and core operations — including the AI Builder / Copilot BOQ automation featured above.</p>
+          </div>
+          <div class="tl-when">Jun 2025 –<br>Present</div>
         </div>
-
-        <div class="impact-card">
-          <div class="impact-number">25%</div>
-          <div class="impact-title">Faster Sales Cycle</div>
-          <div class="impact-text">Improved lead and opportunity flow with a more structured sales process.</div>
+        <div class="tl-item">
+          <div class="tl-dot">②</div>
+          <div class="tl-content">
+            <h4>DataInvent Systems — Ontario, Canada</h4>
+            <div class="tl-role">Microsoft Dynamics 365 CRM &amp; Power Platform Technical Consultant | Power Pages Lead</div>
+            <p>Delivered secure Power Pages portals, enterprise integrations, and case-management solutions for Canadian clients, including the Ontario Motor Vehicle Industry Council permit/license workflow.</p>
+          </div>
+          <div class="tl-when">Jun 2023 –<br>May 2025</div>
         </div>
-
-        <div class="impact-card">
-          <div class="impact-number">500K+</div>
-          <div class="impact-title">Records Migrated</div>
-          <div class="impact-text">Moved large volumes of legacy data with zero downtime.</div>
+        <div class="tl-item">
+          <div class="tl-dot">③</div>
+          <div class="tl-content">
+            <h4>Scaleable Solutions — Islamabad, Pakistan</h4>
+            <div class="tl-role">Sr. Microsoft Dynamics 365 &amp; Power Platform Technical Developer / Consultant</div>
+            <p>Led cross-functional Dynamics 365 and Power Platform implementations for international clients, including the EQS Group (Germany) sales transformation featured above.</p>
+          </div>
+          <div class="tl-when">Sep 2020 –<br>Jun 2023</div>
         </div>
-
-        <div class="impact-card">
-          <div class="impact-number">40%</div>
-          <div class="impact-title">Reporting Time Saved</div>
-          <div class="impact-text">Reduced manual reporting effort through better visibility and automation.</div>
+        <div class="tl-item is-edu">
+          <div class="tl-dot">🎓</div>
+          <div class="tl-content">
+            <h4>BS Computer Science</h4>
+            <div class="tl-role">NCBA&amp;E</div>
+          </div>
+          <div class="tl-when">2020</div>
         </div>
       </div>
     </section>
-	<div class="section" id="certifications">
-  <div class="section-head">
-    <span class="eyebrow">Credentials</span>
-    <h2>Certifications</h2>
-    <p class="section-copy">
-      Microsoft certifications validating expertise in Dynamics 365 and Power Platform development and solution delivery.
-    </p>
-  </div>
 
-  <div class="cert-grid">
+    <section class="section reveal" id="projects">
+      <div class="section-head"><h2>Business Problems I Helped Solve</h2><span class="count">5 records</span></div>
+      <p class="section-copy">Five projects, five different kinds of complexity — automation, sales process, service delivery, integration, and data. Each one covers the challenge, what changed, and the business outcome, with the employer and timeframe it happened under.</p>
 
-    <div class="cert-card">
-      <h4>PL-400</h4>
-      <p>Power Platform Developer Associate</p>
-      <span class="cert-meta">Microsoft • 2027</span>
-    </div>
-
-    <div class="cert-card">
-      <h4>PL-200</h4>
-      <p>Power Platform Functional Consultant Associate</p>
-      <span class="cert-meta">Microsoft • 2027</span>
-    </div>
-
-    <div class="cert-card">
-      <h4>MB-210</h4>
-      <p>Dynamics 365 Sales Functional Consultant Associate</p>
-      <span class="cert-meta">Microsoft • 2022 (Expired)</span>
-    </div>
-
-    <div class="cert-card">
-      <h4>MB-910</h4>
-      <p>Dynamics 365 Fundamentals</p>
-      <span class="cert-meta">Microsoft</span>
-    </div>
-
-    <div class="cert-card">
-      <h4>PL-900</h4>
-      <p>Power Platform Fundamentals</p>
-      <span class="cert-meta">Microsoft</span>
-    </div>
-
-  </div>
-</div>
-    <section class="section" id="projects">
-      <div class="section-head">
-        <span class="eyebrow">Selected Work</span>
-        <h2>Business Problems I Helped Solve</h2>
-        <p class="section-copy">
-          A few examples of how I worked with teams to understand where time was being lost, improve the process, and deliver solutions that made a clear difference.
-        </p>
+      <div class="filter-row" role="group" aria-label="Filter case studies by category">
+        <button type="button" class="filter-chip is-active" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="filter-chip" data-filter="ai" aria-pressed="false">AI &amp; Automation</button>
+        <button type="button" class="filter-chip" data-filter="sales" aria-pressed="false">Sales &amp; Service</button>
+        <button type="button" class="filter-chip" data-filter="integration" aria-pressed="false">Integration</button>
+        <button type="button" class="filter-chip" data-filter="data" aria-pressed="false">Data</button>
       </div>
 
-      <div class="story-card">
-  <div class="story-top">
-    <span class="story-tag">Construction / Estimation</span>
-    <h3>AI-Based BOQ Estimation & Tender Automation</h3>
-    <p class="my-role">
-      <strong>My Role:</strong> I worked closely with estimators to understand their end-to-end workflow, identified where time was being lost, and helped design and deliver a system that automated the full estimation and tender process while keeping control in the hands of the users.
-    </p>
-  </div>
+      <div class="view-toolbar"><span class="view-name">Active Case Studies</span><span class="view-count" id="view-count">5 of 5</span></div>
+      <div style="overflow-x:auto;">
+        <table class="view-grid">
+          <thead><tr><th>#</th><th>Project</th><th>Platform</th><th>Outcome</th><th>Client / Employer</th></tr></thead>
+          <tbody id="case-index-body">
+            <tr data-platform="ai"><td class="row-num">01</td><td><a href="#case-boq">AI-Based BOQ Estimation &amp; Tender Automation</a></td><td class="stack-mini">Model-Driven App · Power Pages · AI Builder</td><td class="outcome-cell">80% less manual effort</td><td>INC Group</td></tr>
+            <tr data-platform="sales"><td class="row-num">02</td><td><a href="#case-eqs">Dynamics 365 Sales Transformation</a></td><td class="stack-mini">D365 Sales · Plugins · Azure Functions</td><td class="outcome-cell">25% faster sales cycle</td><td>Scaleable Solutions</td></tr>
+            <tr data-platform="sales"><td class="row-num">03</td><td><a href="#case-service">Digital Case Management &amp; Customer Portal</a></td><td class="stack-mini">Model-Driven App · Power Pages</td><td class="outcome-cell">30–40% faster response</td><td>DataInvent Systems</td></tr>
+            <tr data-platform="integration"><td class="row-num">04</td><td><a href="#case-integration">Azure &amp; Third-Party Integration</a></td><td class="stack-mini">Azure Functions · Logic Apps · APIs</td><td class="outcome-cell">~30% fewer delays</td><td>Multiple engagements</td></tr>
+            <tr data-platform="data"><td class="row-num">05</td><td><a href="#case-migration">Enterprise Data Migration</a></td><td class="stack-mini">SSIS (KingswaySoft) · Dataverse</td><td class="outcome-cell">500K+ records, 0 downtime</td><td>Multiple engagements</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-  <div class="story-grid">
-    <div class="story-block">
-      <h4>The Challenge</h4>
-      <p>Estimators were handling the full BOQ process manually through Excel and email. They had to categorize items, send package requests, track supplier replies, compare quotations, and prepare tender settlement by hand.</p>
-    </div>
-
-    <div class="story-block">
-      <h4>What I Changed</h4>
-      <p>I helped redesign the process so it could be managed in one system instead of scattered across spreadsheets and inboxes, while still allowing estimators to review and control decisions.</p>
-    </div>
-
-    <div class="story-block">
-      <h4>How I Worked</h4>
-      <p>I reviewed the current workflow with estimators, identified bottlenecks, and shaped a more practical process where categorization, supplier communication, quotation handling, and tender preparation were all connected.</p>
-    </div>
-
-    <div class="story-block">
-      <h4>Business Outcome</h4>
-      <p>Manual effort dropped by <strong>80%</strong>, accuracy improved, and estimators gained full visibility from BOQ upload to final tender submission.</p>
-    </div>
-  </div>
-
-  <div class="before-after">
-    <div class="ba-card ba-before">
-      <div class="ba-label">Before</div>
-      <h4>Manual & scattered</h4>
-      <ul class="ba-list">
-        <li>Excel used for item categorization</li>
-        <li>Email used to send packages to suppliers</li>
-        <li>Supplier quotations tracked manually</li>
-        <li>Alternatives and quantity changes reviewed by hand</li>
-        <li>Tender settlement prepared manually in Excel</li>
-      </ul>
-    </div>
-
-    <div class="ba-card ba-after">
-      <div class="ba-label">After</div>
-      <h4>Centralized & automated</h4>
-      <ul class="ba-list">
-        <li>BOQ uploaded directly into the system</li>
-        <li>Items categorized automatically using AI</li>
-        <li>Packages sent to suppliers from the platform</li>
-        <li>Suppliers submit quotes through a portal</li>
-        <li>Tender settlement generated automatically</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="process-timeline">
-    <div class="timeline-step">
-      <div class="timeline-number">1</div>
-      <h5>Upload</h5>
-      <p>Estimator uploads the BOQ Excel file into the system.</p>
-    </div>
-
-    <div class="timeline-step">
-      <div class="timeline-number">2</div>
-      <h5>Categorize</h5>
-      <p>Items are categorized automatically, with user review where needed.</p>
-    </div>
-
-    <div class="timeline-step">
-      <div class="timeline-number">3</div>
-      <h5>Request Quotes</h5>
-      <p>Packages are sent to suppliers directly from the platform.</p>
-    </div>
-
-    <div class="timeline-step">
-      <div class="timeline-number">4</div>
-      <h5>Compare</h5>
-      <p>Quotations are received, reviewed, and compared in one place.</p>
-    </div>
-
-    <div class="timeline-step">
-      <div class="timeline-number">5</div>
-      <h5>Finalize</h5>
-      <p>Tender settlement and final Excel output are generated automatically.</p>
-    </div>
-  </div>
-
-  <!-- 🔥 ADD HERE -->
-  <div class="story-block tech-section">
-    <h4>Solution Design & Technology</h4>
-    <p>
-      The solution was designed as an end-to-end platform using Dynamics 365 and Power Platform, combining internal process management, supplier collaboration, and intelligent automation in a single system.
-    </p>
-
-    <div class="tech-grid">
-  
-  <div class="tech-card">
-    <h5>Model-Driven App</h5>
-    <p>Manage BOQ data, packages, and quotation comparison</p>
-  </div>
-
-  <div class="tech-card">
-    <h5>Power Pages</h5>
-    <p>Supplier portal for pricing, alternatives, and document submission</p>
-  </div>
-
-  <div class="tech-card">
-    <h5>AI Builder</h5>
-    <p>Automatic categorization of BOQ items using descriptions</p>
-  </div>
-
-  <div class="tech-card">
-    <h5>Power Automate</h5>
-    <p>Email communication, notifications, and workflow automation</p>
-  </div>
-
-  <div class="tech-card">
-    <h5>Custom Pages & JavaScript</h5>
-    <p>Interactive UI and dynamic quotation comparison</p>
-  </div>
-
-  <div class="tech-card">
-    <h5>Business Rules & Security</h5>
-    <p>Data validation, access control, and structured workflows</p>
-  </div>
-
-  <div class="tech-card">
-    <h5>Shared Mailboxes</h5>
-    <p>Centralized and automated supplier communication</p>
-  </div>
-
-</div>
-  </div>
-
-</div>
-
-<div class="story-card">
-  <div class="story-top">
-    <span class="story-tag">Sales / Compliance / Commercial Operations</span>
-    <h3>Dynamics 365 Sales Transformation – EQS Group (Germany)</h3>
-    <p class="my-role">
-      <strong>My Role:</strong> I worked as Developer / Project Lead, partnering with business users to understand how opportunities, pricing, contracts, approvals, and customer data were being handled, and then helped turn that into a more structured, automated, and connected Dynamics 365 Sales solution.
-    </p>
-  </div>
-
-  <div class="story-grid">
-    <div class="story-block">
-      <h4>The Challenge</h4>
-      <p>
-        EQS operates in a business where customer data, approvals, compliance checks, and structured communication are important. 
-        Sales teams needed a better way to manage opportunities, pricing, contracts, and related customer actions without relying on disconnected steps and repeated manual work.
-      </p>
-    </div>
-
-    <div class="story-block">
-      <h4>What I Changed</h4>
-      <p>
-        I helped reshape the sales process inside Dynamics 365 so the system could support day-to-day commercial work more effectively. 
-        This included clearer process stages, better controls around data and approvals, and stronger integration with the external systems the business depended on.
-      </p>
-    </div>
-
-    <div class="story-block">
-      <h4>How I Worked</h4>
-      <p>
-        I gathered requirements directly from business users, reviewed where delays and manual checks were happening, and proposed practical improvements. 
-        I then implemented automation for approvals, notifications, validations, and document generation, while also supporting integrations for company risk screening, VAT validation, HubSpot synchronization, and daily data movement to external systems.
-      </p>
-    </div>
-
-    <div class="story-block">
-      <h4>Business Outcome</h4>
-      <p>
-        The new setup improved sales visibility, reduced manual work, and gave the business more control over pricing, contracts, validations, and customer data. 
-        It helped shorten the sales cycle by <strong>25%</strong>, improved data consistency, and created a more reliable platform for sales and commercial operations.
-      </p>
-    </div>
-  </div>
-
-  <div class="before-after">
-    <div class="ba-card ba-before">
-      <div class="ba-label">Before</div>
-      <h4>Manual and disconnected</h4>
-      <ul class="ba-list">
-        <li>Sales process relied on repeated manual updates</li>
-        <li>Approvals and notifications were not streamlined</li>
-        <li>Validations and checks were handled outside the main process</li>
-        <li>Customer and contract-related data was harder to manage consistently</li>
-        <li>Multiple systems created extra effort and reduced visibility</li>
-      </ul>
-    </div>
-
-    <div class="ba-card ba-after">
-      <div class="ba-label">After</div>
-      <h4>Structured and automated</h4>
-      <ul class="ba-list">
-        <li>Sales stages became clearer and easier to manage</li>
-        <li>Approvals, notifications, and document handling were automated</li>
-        <li>VAT and risk-related checks were integrated into the process</li>
-        <li>Pricing, bundles, contracts, and customer records were better controlled</li>
-        <li>CRM worked as a connected business platform, not just a tracking tool</li>
-      </ul>
-    </div>
-  </div>
-  <div class="story-block tech-section">
-  <h4>Solution Design & Technology</h4>
-  <p>
-    The solution was built as a structured and automated commercial platform using Dynamics 365, combining process control, integrations, validations, and data handling across multiple systems.
-  </p>
-
-  <div class="tech-grid">
-
-    <div class="tech-card">
-      <h5>Process Control & Automation</h5>
-      <p>
-        Business rules, workflows, custom actions, and BPF stage automation to control record flow, approvals, and stage progression.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>Custom Development</h5>
-      <p>
-        C# plugins, custom workflow activities, and JavaScript to implement validations, business logic, and dynamic behaviors.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>User Experience & Interface</h5>
-      <p>
-        Ribbon Workbench, custom pages, and HTML/CSS/jQuery-based UI components for enhanced user interaction and navigation.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>Integrations & External Services</h5>
-      <p>
-        Azure Functions and APIs for integration with Dow Jones, VAT validation services, HubSpot, and other external platforms.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>Data Management & Migration</h5>
-      <p>
-        SSIS, SQL Server, and scheduled data pipelines for migration from MySQL and daily synchronization with external systems.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>Notifications & Communication</h5>
-      <p>
-        Email templates, approval notifications, Teams alerts, and automated reporting emails for real-time communication.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>Document Automation</h5>
-      <p>
-        Word templates and document generation for contracts, approvals, and business documents.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>Pricing & Business Logic</h5>
-      <p>
-        Price lists, product bundles, validations, and automated generation of IDs and contract numbers.
-      </p>
-    </div>
-
-  </div>
-</div>
-</div>
-
-<div class="story-card">
-  <div class="story-top">
-    <span class="story-tag">Customer Service / Case Management</span>
-    <h3>Digital Case Management & Customer Portal</h3>
-    <p class="my-role">
-      <strong>My Role:</strong> I worked with business teams to understand how service requests such as building permits and licenses were handled, and helped design and deliver a structured system that automated case handling, task tracking, and team coordination.
-    </p>
-  </div>
-
-  <div class="story-grid">
-
-    <div class="story-block">
-      <h4>The Challenge</h4>
-      <p>
-        Service requests like permits and licenses were handled manually, with limited tracking and unclear ownership. 
-        Cases often moved between teams without visibility, deadlines were hard to track, and follow-ups depended on manual effort.
-      </p>
-    </div>
-
-    <div class="story-block">
-      <h4>What I Changed</h4>
-      <p>
-        I introduced a structured case management process with clear stages, automatic routing, task tracking, and built-in timelines, 
-        making the workflow more predictable and easier to manage.
-      </p>
-    </div>
-
-    <div class="story-block">
-      <h4>How I Worked</h4>
-      <p>
-        I mapped the full lifecycle of a case, set up automatic assignment based on case type, introduced stage-based task creation, 
-        and implemented SLA tracking with reminders so teams always knew what needed to be done and by when.
-      </p>
-    </div>
-
-    <div class="story-block">
-      <h4>Business Outcome</h4>
-      <p>
-        Reduced response time by <strong>30–40%</strong>, improved SLA compliance, and ensured clear ownership at every stage. 
-        Teams handled cases faster, with fewer delays, and customers gained full visibility into request status.
-      </p>
-    </div>
-
-  </div>
-
-  <div class="before-after">
-    <div class="ba-card ba-before">
-      <div class="ba-label">Before</div>
-      <h4>Manual and unclear process</h4>
-      <ul class="ba-list">
-        <li>Requests handled manually with limited tracking</li>
-        <li>No clear ownership between teams</li>
-        <li>Deadlines and SLAs difficult to monitor</li>
-        <li>Follow-ups depended on manual reminders</li>
-        <li>No visibility for customers</li>
-      </ul>
-    </div>
-
-    <div class="ba-card ba-after">
-      <div class="ba-label">After</div>
-      <h4>Structured and automated workflow</h4>
-      <ul class="ba-list">
-        <li>Automatic case routing based on request type</li>
-        <li>Clear ownership at every stage</li>
-        <li>SLA tracking with real-time alerts</li>
-        <li>Automated reminders and task tracking</li>
-        <li>Customer portal for real-time status tracking</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="process-timeline">
-    <div class="timeline-step">
-      <div class="timeline-number">1</div>
-      <h5>Submit Request</h5>
-      <p>Customer submits permit or license request through the portal.</p>
-    </div>
-
-    <div class="timeline-step">
-      <div class="timeline-number">2</div>
-      <h5>Auto Assignment</h5>
-      <p>Case is routed automatically to the correct team.</p>
-    </div>
-
-    <div class="timeline-step">
-      <div class="timeline-number">3</div>
-      <h5>Processing</h5>
-      <p>Tasks are created for each stage with deadlines.</p>
-    </div>
-
-    <div class="timeline-step">
-      <div class="timeline-number">4</div>
-      <h5>Tracking</h5>
-      <p>SLA alerts and reminders keep teams on track.</p>
-    </div>
-
-    <div class="timeline-step">
-      <div class="timeline-number">5</div>
-      <h5>Completion</h5>
-      <p>Case is completed and customer is notified.</p>
-    </div>
-  </div>
-  <div class="story-block tech-section">
-  <h4>Solution Design & Technology</h4>
-  <p>
-    The solution was designed as a structured service management platform using Dynamics 365 and Power Platform, enabling automated case handling, SLA tracking, and seamless coordination between internal teams and customers.
-  </p>
-
-  <div class="tech-grid">
-
-    <div class="tech-card">
-      <h5>Case Management & Process Flow</h5>
-      <p>
-        Model-Driven App used to manage cases with defined stages, ownership, and lifecycle tracking.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>Automatic Routing & Assignment</h5>
-      <p>
-        Cases are automatically assigned to teams or users based on case type and stage progression.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>SLA & Time-Based Tracking</h5>
-      <p>
-        SLA rules applied to cases and tasks with real-time tracking of deadlines and time remaining.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>Task Automation</h5>
-      <p>
-        Tasks are created automatically for each stage with clear ownership and completion requirements.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>Notifications & Alerts</h5>
-      <p>
-        Email and system notifications, including reminders for pending tasks and SLA breaches.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>Power Pages Portal</h5>
-      <p>
-        Customer portal for submitting requests such as permits and licenses and tracking case status.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>Stage-Based Automation</h5>
-      <p>
-        Team ownership and process actions change automatically based on case stage transitions.
-      </p>
-    </div>
-
-    <div class="tech-card">
-      <h5>Security & Access Control</h5>
-      <p>
-        Role-based access ensures the right teams and users can view and manage relevant cases.
-      </p>
-    </div>
-
-  </div>
-</div>
-</div>
-
-      <div class="story-card">
-        <div class="story-top">
-          <span class="story-tag">Integration / Operations</span>
-          <h3>Azure & Third-Party Integration</h3>
-          <p class="my-role"><strong>My Role:</strong> Reviewed how information was moving across systems and designed a better approach so business teams could rely on accurate, up-to-date data.</p>
+      <div class="record" id="case-boq" data-platform="ai">
+        <div class="record-head">
+          <div><span class="record-cat">Construction / Estimation</span><h3>AI-Based BOQ Estimation &amp; Tender Automation</h3><div class="record-meta">INC Group · Jun 2025 – Present</div></div>
+          <div class="record-stat"><div class="n">80%</div><div class="c">Less Manual Effort</div></div>
         </div>
-
-        <div class="story-grid">
-          <div class="story-block">
-            <h4>The Challenge</h4>
-            <p>Different business systems were disconnected, causing delays, repeated work, and inconsistent information.</p>
+        <div class="record-body">
+          <div class="stack-row">
+            <span class="stack-chip" style="background:var(--dynamics-tint);color:var(--dynamics)">Dynamics 365 CE</span>
+            <span class="stack-chip" style="background:var(--dynamics-tint);color:var(--dynamics)">Model-Driven App</span>
+            <span class="stack-chip" style="background:var(--power-pages-tint);color:var(--power-pages)">Power Pages</span>
+            <span class="stack-chip" style="background:var(--power-apps-tint);color:var(--power-apps)">AI Builder</span>
+            <span class="stack-chip" style="background:var(--power-automate-tint);color:var(--power-automate)">Power Automate</span>
           </div>
-          <div class="story-block">
-            <h4>What I Changed</h4>
-            <p>I helped connect systems so information could move automatically instead of being updated manually.</p>
+          <p class="my-role"><strong>My Role:</strong> I worked closely with estimators to understand their end-to-end workflow, identified where time was being lost, and helped design and deliver a system that automated the full estimation and tender process while keeping control in the hands of the users.</p>
+          <div class="field-grid">
+            <div class="field-cell"><h4>The Challenge</h4><p>Estimators were handling the full BOQ process manually through Excel and email. They had to categorize items, send package requests, track supplier replies, compare quotations, and prepare tender settlement by hand.</p></div>
+            <div class="field-cell"><h4>What I Changed</h4><p>I helped redesign the process so it could be managed in one system instead of scattered across spreadsheets and inboxes, while still allowing estimators to review and control decisions.</p></div>
+            <div class="field-cell"><h4>How I Worked</h4><p>I reviewed the current workflow with estimators, identified bottlenecks, and shaped a more practical process where categorization, supplier communication, quotation handling, and tender preparation were all connected.</p></div>
+            <div class="field-cell"><h4>Business Outcome</h4><p>Manual effort dropped by <strong>80%</strong>, accuracy improved, and estimators gained full visibility from BOQ upload to final tender submission.</p></div>
           </div>
-          <div class="story-block">
-            <h4>How I Worked</h4>
-            <p>I reviewed the handoff points with stakeholders, identified where the flow was breaking, and designed a smoother process that reduced delays and confusion.</p>
+          <div class="before-after">
+            <div class="ba-col before"><div class="ba-label">Before</div><h4>Manual &amp; scattered</h4><ul class="ba-list"><li>Excel used for item categorization</li><li>Email used to send packages to suppliers</li><li>Supplier quotations tracked manually</li><li>Alternatives and quantity changes reviewed by hand</li><li>Tender settlement prepared manually in Excel</li></ul></div>
+            <div class="ba-col after"><div class="ba-label">After</div><h4>Centralized &amp; automated</h4><ul class="ba-list"><li>BOQ uploaded directly into the system</li><li>Items categorized automatically using AI</li><li>Packages sent to suppliers from the platform</li><li>Suppliers submit quotes through a portal</li><li>Tender settlement generated automatically</li></ul></div>
           </div>
-          <div class="story-block">
-            <h4>Business Outcome</h4>
-            <p>Data consistency improved and delays dropped by around <strong>30%</strong>.</p>
+          <div class="process-strip">
+            <div class="p-step"><div class="p-num">1</div><h5>Upload</h5><p>Estimator uploads the BOQ Excel file into the system.</p></div>
+            <div class="p-step"><div class="p-num">2</div><h5>Categorize</h5><p>Items are categorized automatically, with user review where needed.</p></div>
+            <div class="p-step"><div class="p-num">3</div><h5>Request Quotes</h5><p>Packages are sent to suppliers directly from the platform.</p></div>
+            <div class="p-step"><div class="p-num">4</div><h5>Compare</h5><p>Quotations are received, reviewed, and compared in one place.</p></div>
+            <div class="p-step"><div class="p-num">5</div><h5>Finalize</h5><p>Tender settlement and final Excel output are generated automatically.</p></div>
           </div>
+          <div class="tech-note">
+            <h4>Solution Design &amp; Technology</h4>
+            <p>The solution was designed as an end-to-end platform using Dynamics 365 and Power Platform, combining internal process management, supplier collaboration, and intelligent automation in a single system.</p>
+            <div class="tech-grid">
+              <div class="tech-cell"><h5>Model-Driven App</h5><p>Manage BOQ data, packages, and quotation comparison</p></div>
+              <div class="tech-cell"><h5>Power Pages</h5><p>Supplier portal for pricing, alternatives, and document submission</p></div>
+              <div class="tech-cell"><h5>AI Builder</h5><p>Automatic categorization of BOQ items using descriptions</p></div>
+              <div class="tech-cell"><h5>Power Automate</h5><p>Email communication, notifications, and workflow automation</p></div>
+              <div class="tech-cell"><h5>Custom Pages &amp; JavaScript</h5><p>Interactive UI and dynamic quotation comparison</p></div>
+              <div class="tech-cell"><h5>Business Rules &amp; Security</h5><p>Data validation, access control, and structured workflows</p></div>
+              <div class="tech-cell"><h5>Shared Mailboxes</h5><p>Centralized and automated supplier communication</p></div>
+            </div>
+          </div>
+          <figure class="ui-mock">
+            <svg viewBox="0 0 600 300" role="img" aria-label="Mockup of the BOQ estimation dashboard">
+              <rect x="0" y="0" width="600" height="300" fill="#faf9f8"/>
+              <rect x="0" y="0" width="600" height="34" fill="#f3f2f1"/>
+              <text x="16" y="22" font-family="Cascadia Code, Consolas, monospace" font-size="12" fill="#605e5c">BOQ Estimation — Model-Driven App</text>
+              <rect x="470" y="8" width="118" height="18" rx="3" fill="#f5eef5" stroke="#742774"/>
+              <text x="482" y="21" font-family="Cascadia Code, Consolas, monospace" font-size="10" fill="#742774">AI CLASSIFY: ON</text>
+              <rect x="0" y="34" width="112" height="266" fill="#ffffff" stroke="#e1dfdd"/>
+              <rect x="10" y="48" width="92" height="26" rx="2" fill="#eff6fc"/>
+              <text x="20" y="65" font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#0f6cbd">Dashboard</text>
+              <rect x="10" y="80" width="92" height="26" rx="2" fill="#f3f2f1"/>
+              <text x="20" y="97" font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#201f1e">BOQ Items</text>
+              <rect x="10" y="112" width="92" height="26" rx="2" fill="#f3f2f1"/>
+              <text x="20" y="129" font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#201f1e">Suppliers</text>
+              <rect x="10" y="144" width="92" height="26" rx="2" fill="#f3f2f1"/>
+              <text x="20" y="161" font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#201f1e">Tenders</text>
+              <g font-family="Cascadia Code, Consolas, monospace" font-size="10" fill="#605e5c">
+                <text x="128" y="54">ITEM</text><text x="300" y="54">CATEGORY</text><text x="410" y="54">QTY</text><text x="470" y="54">STATUS</text>
+              </g>
+              <line x1="128" y1="62" x2="588" y2="62" stroke="#e1dfdd"/>
+              <g font-family="Segoe UI, sans-serif" font-size="11" fill="#201f1e">
+                <text x="128" y="86">Ready-mix Concrete C30</text><text x="410" y="86">128</text>
+                <rect x="296" y="72" width="72" height="18" rx="2" fill="#f3f2f1"/><text x="306" y="85" fill="#201f1e" font-size="10">Concrete</text>
+                <rect x="466" y="72" width="86" height="18" rx="2" fill="#107c10"/><text x="474" y="85" fill="#ffffff" font-size="10">Categorized</text>
+                <text x="128" y="120">Structural Steel Beams</text><text x="410" y="120">64</text>
+                <rect x="296" y="106" width="72" height="18" rx="2" fill="#f3f2f1"/><text x="306" y="119" fill="#201f1e" font-size="10">Steel</text>
+                <rect x="466" y="106" width="86" height="18" rx="2" fill="#107c10"/><text x="474" y="119" fill="#ffffff" font-size="10">Categorized</text>
+                <text x="128" y="154">Conduit &amp; Cabling</text><text x="410" y="154">310</text>
+                <rect x="296" y="140" width="82" height="18" rx="2" fill="#f3f2f1"/><text x="306" y="153" fill="#201f1e" font-size="10">Electrical</text>
+                <rect x="466" y="140" width="70" height="18" rx="2" fill="#fdf3e4" stroke="#8a5a00"/><text x="474" y="153" fill="#8a5a00" font-size="10">Reviewing</text>
+                <text x="128" y="188">Interior Finishes — Tile</text><text x="410" y="188">45</text>
+                <rect x="296" y="174" width="72" height="18" rx="2" fill="#f3f2f1"/><text x="306" y="187" fill="#201f1e" font-size="10">Finishes</text>
+                <rect x="466" y="174" width="86" height="18" rx="2" fill="#107c10"/><text x="474" y="187" fill="#ffffff" font-size="10">Categorized</text>
+              </g>
+            </svg>
+            <figcaption>Conceptual UI recreation — not an actual client screenshot.</figcaption>
+          </figure>
         </div>
       </div>
 
-      <div class="story-card">
-        <div class="story-top">
-          <span class="story-tag">Data / Transition</span>
-          <h3>Enterprise Data Migration</h3>
+      <div class="record" id="case-eqs" data-platform="sales">
+        <div class="record-head">
+          <div><span class="record-cat">Sales / Compliance / Commercial Operations</span><h3>Dynamics 365 Sales Transformation – EQS Group (Germany)</h3><div class="record-meta">Scaleable Solutions · Client: EQS Group, Germany · Dec 2020 – Jun 2023</div></div>
+          <div class="record-stat"><div class="n">25%</div><div class="c">Faster Sales Cycle</div></div>
+        </div>
+        <div class="record-body">
+          <div class="stack-row">
+            <span class="stack-chip" style="background:var(--dynamics-tint);color:var(--dynamics)">Dynamics 365 Sales</span>
+            <span class="stack-chip" style="background:#f3f2f1;color:#201f1e">C# Plugins</span>
+            <span class="stack-chip" style="background:var(--azure-tint);color:var(--azure)">Azure Functions</span>
+            <span class="stack-chip" style="background:#f3f2f1;color:#201f1e">HubSpot Integration</span>
+            <span class="stack-chip" style="background:var(--power-automate-tint);color:var(--power-automate)">Power Automate</span>
+          </div>
+          <p class="my-role"><strong>My Role:</strong> I worked as Developer / Project Lead, partnering with business users to understand how opportunities, pricing, contracts, approvals, and customer data were being handled, and then helped turn that into a more structured, automated, and connected Dynamics 365 Sales solution.</p>
+          <div class="field-grid">
+            <div class="field-cell"><h4>The Challenge</h4><p>EQS operates in a business where customer data, approvals, compliance checks, and structured communication are important. Sales teams needed a better way to manage opportunities, pricing, contracts, and related customer actions without relying on disconnected steps and repeated manual work.</p></div>
+            <div class="field-cell"><h4>What I Changed</h4><p>I helped reshape the sales process inside Dynamics 365 so the system could support day-to-day commercial work more effectively. This included clearer process stages, better controls around data and approvals, and stronger integration with the external systems the business depended on.</p></div>
+            <div class="field-cell"><h4>How I Worked</h4><p>I gathered requirements directly from business users, reviewed where delays and manual checks were happening, and proposed practical improvements. I then implemented automation for approvals, notifications, validations, and document generation, while also supporting integrations for company risk screening, VAT validation, HubSpot synchronization, and daily data movement to external systems.</p></div>
+            <div class="field-cell"><h4>Business Outcome</h4><p>The new setup improved sales visibility, reduced manual work, and gave the business more control over pricing, contracts, validations, and customer data. It helped shorten the sales cycle by <strong>25%</strong>, improved data consistency, and created a more reliable platform for sales and commercial operations.</p></div>
+          </div>
+          <div class="before-after">
+            <div class="ba-col before"><div class="ba-label">Before</div><h4>Manual and disconnected</h4><ul class="ba-list"><li>Sales process relied on repeated manual updates</li><li>Approvals and notifications were not streamlined</li><li>Validations and checks were handled outside the main process</li><li>Customer and contract-related data was harder to manage consistently</li><li>Multiple systems created extra effort and reduced visibility</li></ul></div>
+            <div class="ba-col after"><div class="ba-label">After</div><h4>Structured and automated</h4><ul class="ba-list"><li>Sales stages became clearer and easier to manage</li><li>Approvals, notifications, and document handling were automated</li><li>VAT and risk-related checks were integrated into the process</li><li>Pricing, bundles, contracts, and customer records were better controlled</li><li>CRM worked as a connected business platform, not just a tracking tool</li></ul></div>
+          </div>
+          <div class="tech-note">
+            <h4>Solution Design &amp; Technology</h4>
+            <p>The solution was built as a structured and automated commercial platform using Dynamics 365, combining process control, integrations, validations, and data handling across multiple systems.</p>
+            <div class="tech-grid">
+              <div class="tech-cell"><h5>Process Control &amp; Automation</h5><p>Business rules, workflows, custom actions, and BPF stage automation to control record flow, approvals, and stage progression.</p></div>
+              <div class="tech-cell"><h5>Custom Development</h5><p>C# plugins, custom workflow activities, and JavaScript to implement validations, business logic, and dynamic behaviors.</p></div>
+              <div class="tech-cell"><h5>User Experience &amp; Interface</h5><p>Ribbon Workbench, custom pages, and HTML/CSS/jQuery-based UI components for enhanced user interaction and navigation.</p></div>
+              <div class="tech-cell"><h5>Integrations &amp; External Services</h5><p>Azure Functions and APIs for integration with Dow Jones, VAT validation services, HubSpot, and other external platforms.</p></div>
+              <div class="tech-cell"><h5>Data Management &amp; Migration</h5><p>SSIS, SQL Server, and scheduled data pipelines for migration from MySQL and daily synchronization with external systems.</p></div>
+              <div class="tech-cell"><h5>Notifications &amp; Communication</h5><p>Email templates, approval notifications, Teams alerts, and automated reporting emails for real-time communication.</p></div>
+              <div class="tech-cell"><h5>Document Automation</h5><p>Word templates and document generation for contracts, approvals, and business documents.</p></div>
+              <div class="tech-cell"><h5>Pricing &amp; Business Logic</h5><p>Price lists, product bundles, validations, and automated generation of IDs and contract numbers.</p></div>
+            </div>
+          </div>
+          <figure class="ui-mock">
+            <svg viewBox="0 0 600 300" role="img" aria-label="Mockup of the sales pipeline kanban board">
+              <rect x="0" y="0" width="600" height="300" fill="#faf9f8"/>
+              <rect x="0" y="0" width="600" height="34" fill="#f3f2f1"/>
+              <text x="16" y="22" font-family="Cascadia Code, Consolas, monospace" font-size="12" fill="#605e5c">Sales Pipeline — Dynamics 365</text>
+              <g font-family="Cascadia Code, Consolas, monospace" font-size="10" fill="#605e5c">
+                <text x="24" y="56">LEAD</text><text x="174" y="56">QUALIFY</text><text x="324" y="56">PROPOSAL</text><text x="474" y="56">WON</text>
+              </g>
+              <line x1="160" y1="46" x2="160" y2="286" stroke="#e1dfdd"/><line x1="310" y1="46" x2="310" y2="286" stroke="#e1dfdd"/><line x1="460" y1="46" x2="460" y2="286" stroke="#e1dfdd"/>
+              <rect x="20" y="66" width="130" height="66" rx="3" fill="#ffffff" stroke="#c8c6c4"/>
+              <text x="30" y="86" font-family="Segoe UI, sans-serif" font-size="11" fill="#201f1e">New Inquiry — DE</text>
+              <text x="30" y="106" font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#0f6cbd">€22K</text>
+              <rect x="20" y="140" width="130" height="66" rx="3" fill="#ffffff" stroke="#c8c6c4"/>
+              <text x="30" y="160" font-family="Segoe UI, sans-serif" font-size="11" fill="#201f1e">Renewal — FR</text>
+              <text x="30" y="180" font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#0f6cbd">€18K</text>
+              <rect x="170" y="66" width="130" height="66" rx="3" fill="#ffffff" stroke="#c8c6c4"/>
+              <text x="180" y="86" font-family="Segoe UI, sans-serif" font-size="11" fill="#201f1e">Expansion — UK</text>
+              <text x="180" y="106" font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#0f6cbd">€41K</text>
+              <rect x="320" y="66" width="130" height="66" rx="3" fill="#fdf3e4" stroke="#8a5a00"/>
+              <text x="330" y="86" font-family="Segoe UI, sans-serif" font-size="11" fill="#201f1e">Compliance Rev.</text>
+              <text x="330" y="106" font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#8a5a00">€65K</text>
+              <rect x="470" y="66" width="110" height="66" rx="3" fill="#107c10"/>
+              <text x="480" y="86" font-family="Segoe UI, sans-serif" font-size="11" fill="#ffffff">Contract Signed</text>
+              <text x="480" y="106" font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#ffffff">€30K</text>
+            </svg>
+            <figcaption>Conceptual UI recreation — not an actual client screenshot.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="record" id="case-service" data-platform="sales">
+        <div class="record-head">
+          <div><span class="record-cat">Customer Service / Case Management</span><h3>Digital Case Management &amp; Customer Portal</h3><div class="record-meta">DataInvent Systems · Client: Ontario Motor Vehicle Industry Council · Aug 2024 – Dec 2024</div></div>
+          <div class="record-stat"><div class="n">30–40%</div><div class="c">Faster Response</div></div>
+        </div>
+        <div class="record-body">
+          <div class="stack-row">
+            <span class="stack-chip" style="background:var(--dynamics-tint);color:var(--dynamics)">Model-Driven App</span>
+            <span class="stack-chip" style="background:var(--power-pages-tint);color:var(--power-pages)">Power Pages</span>
+            <span class="stack-chip" style="background:#f3f2f1;color:#201f1e">Business Rules</span>
+            <span class="stack-chip" style="background:var(--power-automate-tint);color:var(--power-automate)">Power Automate</span>
+            <span class="stack-chip" style="background:#f3f2f1;color:#201f1e">Security Roles</span>
+          </div>
+          <p class="my-role"><strong>My Role:</strong> I worked with business teams to understand how service requests such as building permits and licenses were handled, and helped design and deliver a structured system that automated case handling, task tracking, and team coordination.</p>
+          <div class="field-grid">
+            <div class="field-cell"><h4>The Challenge</h4><p>Service requests like permits and licenses were handled manually, with limited tracking and unclear ownership. Cases often moved between teams without visibility, deadlines were hard to track, and follow-ups depended on manual effort.</p></div>
+            <div class="field-cell"><h4>What I Changed</h4><p>I introduced a structured case management process with clear stages, automatic routing, task tracking, and built-in timelines, making the workflow more predictable and easier to manage.</p></div>
+            <div class="field-cell"><h4>How I Worked</h4><p>I mapped the full lifecycle of a case, set up automatic assignment based on case type, introduced stage-based task creation, and implemented SLA tracking with reminders so teams always knew what needed to be done and by when.</p></div>
+            <div class="field-cell"><h4>Business Outcome</h4><p>Reduced response time by <strong>30–40%</strong>, improved SLA compliance, and ensured clear ownership at every stage. Teams handled cases faster, with fewer delays, and customers gained full visibility into request status.</p></div>
+          </div>
+          <div class="before-after">
+            <div class="ba-col before"><div class="ba-label">Before</div><h4>Manual and unclear process</h4><ul class="ba-list"><li>Requests handled manually with limited tracking</li><li>No clear ownership between teams</li><li>Deadlines and SLAs difficult to monitor</li><li>Follow-ups depended on manual reminders</li><li>No visibility for customers</li></ul></div>
+            <div class="ba-col after"><div class="ba-label">After</div><h4>Structured and automated workflow</h4><ul class="ba-list"><li>Automatic case routing based on request type</li><li>Clear ownership at every stage</li><li>SLA tracking with real-time alerts</li><li>Automated reminders and task tracking</li><li>Customer portal for real-time status tracking</li></ul></div>
+          </div>
+          <div class="process-strip">
+            <div class="p-step"><div class="p-num">1</div><h5>Submit Request</h5><p>Customer submits permit or license request through the portal.</p></div>
+            <div class="p-step"><div class="p-num">2</div><h5>Auto Assignment</h5><p>Case is routed automatically to the correct team.</p></div>
+            <div class="p-step"><div class="p-num">3</div><h5>Processing</h5><p>Tasks are created for each stage with deadlines.</p></div>
+            <div class="p-step"><div class="p-num">4</div><h5>Tracking</h5><p>SLA alerts and reminders keep teams on track.</p></div>
+            <div class="p-step"><div class="p-num">5</div><h5>Completion</h5><p>Case is completed and customer is notified.</p></div>
+          </div>
+          <div class="tech-note">
+            <h4>Solution Design &amp; Technology</h4>
+            <p>The solution was designed as a structured service management platform using Dynamics 365 and Power Platform, enabling automated case handling, SLA tracking, and seamless coordination between internal teams and customers.</p>
+            <div class="tech-grid">
+              <div class="tech-cell"><h5>Case Management &amp; Process Flow</h5><p>Model-Driven App used to manage cases with defined stages, ownership, and lifecycle tracking.</p></div>
+              <div class="tech-cell"><h5>Automatic Routing &amp; Assignment</h5><p>Cases are automatically assigned to teams or users based on case type and stage progression.</p></div>
+              <div class="tech-cell"><h5>SLA &amp; Time-Based Tracking</h5><p>SLA rules applied to cases and tasks with real-time tracking of deadlines and time remaining.</p></div>
+              <div class="tech-cell"><h5>Task Automation</h5><p>Tasks are created automatically for each stage with clear ownership and completion requirements.</p></div>
+              <div class="tech-cell"><h5>Notifications &amp; Alerts</h5><p>Email and system notifications, including reminders for pending tasks and SLA breaches.</p></div>
+              <div class="tech-cell"><h5>Power Pages Portal</h5><p>Customer portal for submitting requests such as permits and licenses and tracking case status.</p></div>
+              <div class="tech-cell"><h5>Stage-Based Automation</h5><p>Team ownership and process actions change automatically based on case stage transitions.</p></div>
+              <div class="tech-cell"><h5>Security &amp; Access Control</h5><p>Role-based access ensures the right teams and users can view and manage relevant cases.</p></div>
+            </div>
+          </div>
+          <figure class="ui-mock">
+            <svg viewBox="0 0 600 300" role="img" aria-label="Mockup of the case management SLA list">
+              <rect x="0" y="0" width="600" height="300" fill="#faf9f8"/>
+              <rect x="0" y="0" width="600" height="34" fill="#f3f2f1"/>
+              <text x="16" y="22" font-family="Cascadia Code, Consolas, monospace" font-size="12" fill="#605e5c">Case Management — Service Requests</text>
+              <rect x="20" y="50" width="560" height="66" rx="3" fill="#ffffff" stroke="#e1dfdd"/>
+              <text x="34" y="72" font-family="Segoe UI, sans-serif" font-size="12" fill="#201f1e">Case #1042 — Building Permit</text>
+              <text x="34" y="90" font-family="Cascadia Code, Consolas, monospace" font-size="10" fill="#605e5c">Permits Team</text>
+              <rect x="380" y="66" width="160" height="10" rx="3" fill="#e1dfdd"/><rect x="380" y="66" width="128" height="10" rx="3" fill="#107c10"/>
+              <text x="546" y="75" font-family="Cascadia Code, Consolas, monospace" font-size="10" fill="#107c10">On track</text>
+              <rect x="20" y="126" width="560" height="66" rx="3" fill="#ffffff" stroke="#e1dfdd"/>
+              <text x="34" y="148" font-family="Segoe UI, sans-serif" font-size="12" fill="#201f1e">Case #1043 — Business License</text>
+              <text x="34" y="166" font-family="Cascadia Code, Consolas, monospace" font-size="10" fill="#605e5c">Licensing Team</text>
+              <rect x="380" y="142" width="160" height="10" rx="3" fill="#e1dfdd"/><rect x="380" y="142" width="88" height="10" rx="3" fill="#d9a441"/>
+              <text x="546" y="151" font-family="Cascadia Code, Consolas, monospace" font-size="10" fill="#8a5a00">Due soon</text>
+              <rect x="20" y="202" width="560" height="66" rx="3" fill="#fde7e9" stroke="#a4262c"/>
+              <text x="34" y="224" font-family="Segoe UI, sans-serif" font-size="12" fill="#201f1e">Case #1044 — Signage Permit</text>
+              <text x="34" y="242" font-family="Cascadia Code, Consolas, monospace" font-size="10" fill="#605e5c">Permits Team</text>
+              <rect x="380" y="218" width="160" height="10" rx="3" fill="#e1dfdd"/><rect x="380" y="218" width="154" height="10" rx="3" fill="#a4262c"/>
+              <text x="546" y="227" font-family="Cascadia Code, Consolas, monospace" font-size="10" fill="#a4262c">Overdue</text>
+            </svg>
+            <figcaption>Conceptual UI recreation — not an actual client screenshot.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="record" id="case-integration" data-platform="integration">
+        <div class="record-head">
+          <div><span class="record-cat">Integration / Operations</span><h3>Azure &amp; Third-Party Integration Architecture</h3><div class="record-meta">Recurring pattern · DataInvent Systems &amp; Scaleable Solutions</div></div>
+          <div class="record-stat"><div class="n">~30%</div><div class="c">Fewer Delays</div></div>
+        </div>
+        <div class="record-body">
+          <div class="stack-row">
+            <span class="stack-chip" style="background:var(--azure-tint);color:var(--azure)">Azure Functions</span>
+            <span class="stack-chip" style="background:var(--azure-tint);color:var(--azure)">Azure Logic Apps</span>
+            <span class="stack-chip" style="background:#f3f2f1;color:#201f1e">REST / SOAP APIs</span>
+            <span class="stack-chip" style="background:#f3f2f1;color:#201f1e">Microsoft Graph API</span>
+            <span class="stack-chip" style="background:var(--dynamics-tint);color:var(--dynamics)">Entra ID</span>
+          </div>
+          <p class="my-role"><strong>My Role:</strong> Across projects, I've been the person called in when systems stopped talking to each other — reviewing how information actually moved, and redesigning the connections so it moved automatically and reliably.</p>
+          <div class="field-grid">
+            <div class="field-cell"><h4>The Challenge</h4><p>Business systems were disconnected from Dynamics 365 — separate databases, external validation services, and third-party platforms — which meant manual re-entry, delayed handoffs, and data that drifted out of sync between systems.</p></div>
+            <div class="field-cell"><h4>What I Changed</h4><p>I designed integration patterns that let Dynamics 365 and Dataverse exchange data with external systems automatically — real-time where the business needed it, scheduled batch where it didn't — instead of relying on manual updates between platforms.</p></div>
+            <div class="field-cell"><h4>How I Worked</h4><p>I reviewed each handoff point with stakeholders, identified where the flow was breaking, and built Azure Functions and API-based connectors sized to the actual load and reliability needs of each integration, with error handling and retry logic so failures didn't go silent.</p></div>
+            <div class="field-cell"><h4>Business Outcome</h4><p>Data consistency improved across connected systems and integration-related delays dropped by around <strong>30%</strong>, with fewer manual reconciliation tasks for operations teams.</p></div>
+          </div>
+          <div class="tech-note">
+            <h4>Solution Design &amp; Technology</h4>
+            <p>Each integration was designed around the specific system it connected to — some real-time via API, some scheduled batch via SSIS — but all routed through a consistent Dataverse-centered pattern.</p>
+            <div class="tech-grid">
+              <div class="tech-cell"><h5>Azure Functions</h5><p>Real-time integration and scalable backend processing for external system calls.</p></div>
+              <div class="tech-cell"><h5>Azure Logic Apps</h5><p>Orchestrated multi-step integration workflows and scheduled triggers.</p></div>
+              <div class="tech-cell"><h5>REST / SOAP / OData APIs</h5><p>Standards-based connectors into external platforms and legacy systems.</p></div>
+              <div class="tech-cell"><h5>Webhooks</h5><p>Event-driven updates from external systems into Dataverse.</p></div>
+              <div class="tech-cell"><h5>Microsoft Graph API</h5><p>Integration with SharePoint and Microsoft 365 services.</p></div>
+              <div class="tech-cell"><h5>Entra ID / Azure AD B2C</h5><p>Authentication and SSO across integrated portals and services.</p></div>
+            </div>
+          </div>
+          <figure class="ui-mock">
+            <svg viewBox="0 0 600 300" role="img" aria-label="Diagram of the integration architecture">
+              <rect x="0" y="0" width="600" height="300" fill="#faf9f8"/>
+              <rect x="0" y="0" width="600" height="34" fill="#f3f2f1"/>
+              <text x="16" y="22" font-family="Cascadia Code, Consolas, monospace" font-size="12" fill="#605e5c">Integration Architecture — Dataverse-Centered</text>
+              <g stroke="#c8c6c4" stroke-width="1.5">
+                <line x1="300" y1="165" x2="130" y2="80"/><line x1="300" y1="165" x2="470" y2="80"/><line x1="300" y1="165" x2="90" y2="190"/><line x1="300" y1="165" x2="510" y2="190"/><line x1="300" y1="165" x2="170" y2="270"/><line x1="300" y1="165" x2="430" y2="270"/>
+              </g>
+              <rect x="220" y="140" width="160" height="50" rx="4" fill="#eff6fc" stroke="#0f6cbd"/>
+              <text x="300" y="161" text-anchor="middle" font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#0f6cbd">Dynamics 365 /</text>
+              <text x="300" y="177" text-anchor="middle" font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#0f6cbd">Dataverse</text>
+              <g font-family="Cascadia Code, Consolas, monospace" font-size="10" fill="#201f1e">
+                <rect x="60" y="58" width="140" height="36" rx="3" fill="#ffffff" stroke="#c8c6c4"/><text x="130" y="80" text-anchor="middle">Azure Functions</text>
+                <rect x="400" y="58" width="140" height="36" rx="3" fill="#ffffff" stroke="#c8c6c4"/><text x="470" y="80" text-anchor="middle">SharePoint</text>
+                <rect x="20" y="172" width="140" height="36" rx="3" fill="#ffffff" stroke="#c8c6c4"/><text x="90" y="194" text-anchor="middle">SQL Server (SSIS)</text>
+                <rect x="440" y="172" width="140" height="36" rx="3" fill="#ffffff" stroke="#c8c6c4"/><text x="510" y="194" text-anchor="middle">REST / SOAP APIs</text>
+                <rect x="100" y="252" width="140" height="36" rx="3" fill="#ffffff" stroke="#c8c6c4"/><text x="170" y="274" text-anchor="middle">Power Automate</text>
+                <rect x="360" y="252" width="140" height="36" rx="3" fill="#ffffff" stroke="#c8c6c4"/><text x="430" y="274" text-anchor="middle">Microsoft Graph</text>
+              </g>
+            </svg>
+            <figcaption>Conceptual architecture diagram — recreated for portfolio purposes.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="record" id="case-migration" data-platform="data">
+        <div class="record-head">
+          <div><span class="record-cat">Data / Transition</span><h3>Enterprise Data Migration</h3><div class="record-meta">Recurring pattern · DataInvent Systems &amp; Scaleable Solutions</div></div>
+          <div class="record-stat"><div class="n">500K+</div><div class="c">Zero Downtime</div></div>
+        </div>
+        <div class="record-body">
+          <div class="stack-row">
+            <span class="stack-chip" style="background:#f3f2f1;color:#201f1e">SSIS (KingswaySoft)</span>
+            <span class="stack-chip" style="background:#f3f2f1;color:#201f1e">SQL Server</span>
+            <span class="stack-chip" style="background:var(--dynamics-tint);color:var(--dynamics)">Dataverse</span>
+            <span class="stack-chip" style="background:#f3f2f1;color:#201f1e">Data Validation</span>
+          </div>
           <p class="my-role"><strong>My Role:</strong> Planned and managed the migration approach to make sure large volumes of legacy data could move safely without disrupting day-to-day operations.</p>
+          <div class="field-grid">
+            <div class="field-cell"><h4>The Challenge</h4><p>Large volumes of legacy data needed to move into Dynamics 365 while the business continued operating — with inconsistent formatting, duplicate records, and no room for downtime during the cutover.</p></div>
+            <div class="field-cell"><h4>What I Changed</h4><p>I introduced a more structured migration approach with clear field mapping, data validation, de-duplication rules, and staged testing before the final cutover, instead of a single high-risk move.</p></div>
+            <div class="field-cell"><h4>How I Worked</h4><p>I worked through the source data structure, reviewed quality issues with stakeholders, built SSIS (KingswaySoft) packages to map and transform records into Dataverse's schema, and ran validation passes on staging before touching production data.</p></div>
+            <div class="field-cell"><h4>Business Outcome</h4><p>More than <strong>500K records</strong> were migrated successfully with zero downtime, and the target system received clean, de-duplicated, and validated data from day one.</p></div>
+          </div>
+          <div class="before-after">
+            <div class="ba-col before"><div class="ba-label">Before</div><h4>Legacy &amp; inconsistent</h4><ul class="ba-list"><li>Data spread across legacy systems and formats</li><li>Duplicate and inconsistent records</li><li>No structured mapping to the new schema</li><li>High risk of downtime during a single big-bang move</li></ul></div>
+            <div class="ba-col after"><div class="ba-label">After</div><h4>Clean &amp; validated</h4><ul class="ba-list"><li>Field-level mapping into Dataverse's schema</li><li>De-duplication and validation rules applied pre-migration</li><li>Staged testing before production cutover</li><li>Zero downtime during the final move</li></ul></div>
+          </div>
+          <div class="tech-note">
+            <h4>Solution Design &amp; Technology</h4>
+            <p>Migration was built around SSIS (KingswaySoft) packages targeting Dataverse, with SQL Server staging tables used to validate and clean data before each load.</p>
+            <div class="tech-grid">
+              <div class="tech-cell"><h5>SSIS (KingswaySoft)</h5><p>Field mapping and transformation from legacy sources into Dataverse.</p></div>
+              <div class="tech-cell"><h5>SQL Server Staging</h5><p>Validation and de-duplication passes before production load.</p></div>
+              <div class="tech-cell"><h5>Dataverse</h5><p>Target schema design for clean, consistent records.</p></div>
+              <div class="tech-cell"><h5>SQL Server Agent Jobs</h5><p>Scheduled batch loads and post-migration reconciliation checks.</p></div>
+            </div>
+          </div>
+          <figure class="ui-mock">
+            <svg viewBox="0 0 600 260" role="img" aria-label="Mockup of the data migration run status">
+              <rect x="0" y="0" width="600" height="260" fill="#faf9f8"/>
+              <rect x="0" y="0" width="600" height="34" fill="#f3f2f1"/>
+              <text x="16" y="22" font-family="Cascadia Code, Consolas, monospace" font-size="12" fill="#605e5c">Migration Run — Legacy → Dataverse</text>
+              <rect x="470" y="8" width="112" height="18" rx="3" fill="#dff6dd" stroke="#107c10"/>
+              <text x="480" y="21" font-family="Cascadia Code, Consolas, monospace" font-size="10" fill="#107c10">COMPLETE</text>
+              <g font-family="Cascadia Code, Consolas, monospace" font-size="10" fill="#201f1e">
+                <rect x="24" y="58" width="150" height="40" rx="3" fill="#ffffff" stroke="#c8c6c4"/><text x="99" y="82" text-anchor="middle">Legacy SQL Source</text>
+                <rect x="225" y="58" width="150" height="42" rx="3" fill="#fdf3e4" stroke="#8a5a00"/><text x="300" y="76" text-anchor="middle" fill="#8a5a00">Staging &amp; Validation</text><text x="300" y="90" text-anchor="middle" fill="#8a5a00">De-dup · Field Mapping</text>
+                <rect x="426" y="58" width="150" height="40" rx="3" fill="#eff6fc" stroke="#0f6cbd"/><text x="501" y="82" text-anchor="middle" fill="#0f6cbd">Dataverse</text>
+                <line x1="174" y1="79" x2="225" y2="79" stroke="#8a5a00" stroke-width="1.5"/><polygon points="225,79 216,74 216,84" fill="#8a5a00"/>
+                <line x1="375" y1="79" x2="426" y2="79" stroke="#0f6cbd" stroke-width="1.5"/><polygon points="426,79 417,74 417,84" fill="#0f6cbd"/>
+              </g>
+              <rect x="24" y="140" width="552" height="18" rx="4" fill="#e1dfdd"/>
+              <rect x="24" y="140" width="552" height="18" rx="4" fill="#107c10"/>
+              <text x="24" y="178" font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#201f1e">500K+ records migrated</text>
+              <text x="576" y="178" text-anchor="end" font-family="Cascadia Code, Consolas, monospace" font-size="11" fill="#107c10">100%</text>
+              <text x="24" y="210" font-family="Segoe UI, sans-serif" font-size="11" fill="#605e5c">Cutover downtime: 0 minutes · Post-load reconciliation: passed</text>
+            </svg>
+            <figcaption>Conceptual UI recreation — not an actual client screenshot.</figcaption>
+          </figure>
         </div>
+      </div>
+    </section>
 
-        <div class="story-grid">
-          <div class="story-block">
-            <h4>The Challenge</h4>
-            <p>Large volumes of legacy data needed to be moved while the business continued operating.</p>
+    <section class="section reveal" id="testimonials">
+      <div class="section-head"><h2>What Colleagues Say</h2></div>
+      <p class="section-copy">Recommendations written by managers, clients, and teammates on LinkedIn — shown as received, each with a link to verify the person.</p>
+      <div class="feed">
+        <div class="feed-item">
+          <div class="feed-avatar">MH</div>
+          <div>
+            <div class="feed-head"><span class="feed-name">Mateen Ul Haq</span><span class="feed-role">Solution Architect, Dynamics 365 CRM &amp; Power Platform</span><span class="feed-meta">May 2025</span></div>
+            <span class="feed-tag">Direct Manager</span>
+            <p class="feed-quote">"I've had the pleasure of working with Ashir Zahid on multiple Dynamics 365 CRM and Power Pages projects, and I can confidently say he is one of the most reliable and skilled consultants I've worked with. Ashir brings deep functional and technical expertise in Dynamics 365 CRM, including areas like Sales, Customer Service, and custom model-driven apps. He has worked extensively on building and enhancing Power Pages portals, integrating them with CRM for end-to-end business processes such as membership registration, case management, and approval workflows."</p>
+            <div class="feed-source"><a href="https://www.linkedin.com/in/mateen-ul-haq-76237988/" target="_blank" rel="noopener">Mateen Ul Haq on LinkedIn ↗</a></div>
           </div>
-          <div class="story-block">
-            <h4>What I Changed</h4>
-            <p>I introduced a more structured migration approach with clear mapping, validation, and testing before final movement.</p>
+        </div>
+        <div class="feed-item">
+          <div class="feed-avatar">MM</div>
+          <div>
+            <div class="feed-head"><span class="feed-name">Maida Mirvic</span><span class="feed-role">Senior Automation Expert, EQS Group AG</span><span class="feed-meta">Oct 2024</span></div>
+            <span class="feed-tag is-client">Client</span>
+            <p class="feed-quote">"I am pleased to recommend Ashir Zahid as an exceptional external CRM consultant. Having worked with him for 2 years, I can confidently say that he brings a wealth of knowledge and expertise in CRM strategies that have significantly enhanced our customer relationship management processes. … What truly sets Ashir apart is his commitment to continuous support and availability."</p>
+            <div class="feed-source"><a href="https://www.linkedin.com/in/maida-mirvic/" target="_blank" rel="noopener">Maida Mirvic on LinkedIn ↗</a></div>
           </div>
-          <div class="story-block">
-            <h4>How I Worked</h4>
-            <p>I worked through the data structure, reviewed quality issues, and made sure the target system would receive clean and usable information.</p>
+        </div>
+        <div class="feed-item">
+          <div class="feed-avatar">MQ</div>
+          <div>
+            <div class="feed-head"><span class="feed-name">Marian Quandt</span><span class="feed-role">Director, Business Applications</span><span class="feed-meta">Sep 2024</span></div>
+            <span class="feed-tag is-client">Client</span>
+            <p class="feed-quote">"I highly recommend Ashir, with whom I had the privilege of working closely in the CRM domain. His deep understanding of CRM systems, combined with his problem-solving skills, makes him an expert in his field. Ashir consistently delivers top-tier support, demonstrating quick responsiveness and an ability to resolve complex issues efficiently."</p>
+            <div class="feed-source"><a href="https://www.linkedin.com/in/marian-quandt/" target="_blank" rel="noopener">Marian Quandt on LinkedIn ↗</a></div>
           </div>
-          <div class="story-block">
-            <h4>Business Outcome</h4>
-            <p>More than <strong>500K records</strong> were migrated successfully with zero downtime.</p>
+        </div>
+        <div class="feed-item">
+          <div class="feed-avatar">SC</div>
+          <div>
+            <div class="feed-head"><span class="feed-name">Sahr Chaudhry</span><span class="feed-role">Director of Operations, DataInvent Systems Corp</span><span class="feed-meta">Apr 2025</span></div>
+            <span class="feed-tag is-peer">Team Member</span>
+            <p class="feed-quote">"Ashir brings deep expertise in Dynamics 365 Customer Engagement, Power Platform, and Portal development. He has a remarkable ability to translate complex business requirements into scalable, user-friendly solutions. His problem-solving skills, technical proficiency, and keen attention to detail consistently elevate the quality of every project he has been involved in."</p>
+            <div class="feed-source"><a href="https://www.linkedin.com/in/sahr-c-a308b81a0/" target="_blank" rel="noopener">Sahr Chaudhry on LinkedIn ↗</a></div>
+          </div>
+        </div>
+        <div class="feed-item">
+          <div class="feed-avatar">NH</div>
+          <div>
+            <div class="feed-head"><span class="feed-name">Nadeem Hasan</span><span class="feed-role">Dynamics 365 CE/CRM &amp; Power Platform Developer</span><span class="feed-meta">Sep 2024</span></div>
+            <span class="feed-tag">Direct Manager</span>
+            <p class="feed-quote">"I highly recommend Ashir for any Dynamics 365 CRM/Power Apps development projects. I've had the pleasure of working with Ashir for 2 years and have witnessed his exceptional skills and expertise in delivering high-quality solutions. Ashir is a team player, excellent communicator, and dedicated professional who consistently meets deadlines and exceeds expectations."</p>
+            <div class="feed-source"><a href="https://www.linkedin.com/in/nadeem-hasan-1bab3a130/" target="_blank" rel="noopener">Nadeem Hasan on LinkedIn ↗</a></div>
           </div>
         </div>
       </div>
     </section>
 
-
-<div class="section" id="skills">
-  <div class="section-head">
-    <span class="eyebrow">Capabilities</span>
-    <h2>Skills & Expertise</h2>
-    <p class="section-copy">
-      A blend of technical depth and business-focused solution design across Dynamics 365, Power Platform, and enterprise systems.
-    </p>
-  </div>
-
-  <div class="skills-grid">
-
-    <!-- Dynamics -->
-    <div class="skill-group">
-      <h4>Dynamics 365 & Power Platform</h4>
-      <div class="skills-wrap">
-        <span class="skill">Dynamics 365 (Sales, Customer Service)</span>
-        <span class="skill">Dataverse</span>
-        <span class="skill">Model-Driven Apps</span>
-        <span class="skill">Canvas Apps</span>
-        <span class="skill">Power Pages</span>
-        <span class="skill">Power Automate</span>
-        <span class="skill">AI Builder</span>
-        <span class="skill">Business Rules & Workflows</span>
-        <span class="skill">Ribbon Workbench</span>
-        <span class="skill">Custom Pages</span>
-        <span class="skill">Power Platform Pipelines</span>
-      </div>
-    </div>
-
-    <!-- Development -->
-    <div class="skill-group">
-      <h4>Development</h4>
-      <div class="skills-wrap">
-        <span class="skill">C# / .NET</span>
-        <span class="skill">Plugins & Custom Workflow Activities</span>
-        <span class="skill">ASP.NET (MVC, Web API)</span>
-        <span class="skill">JavaScript / TypeScript</span>
-        <span class="skill">jQuery / Knockout JS</span>
-        <span class="skill">Power FX</span>
-        <span class="skill">HTML / CSS</span>
-        <span class="skill">Liquid Templates</span>
-        <span class="skill">FetchXML / SDK</span>
-      </div>
-    </div>
-
-    <!-- Integration -->
-    <div class="skill-group">
-      <h4>Integration & Automation</h4>
-      <div class="skills-wrap">
-        <span class="skill">Azure Functions</span>
-        <span class="skill">Azure Logic Apps</span>
-        <span class="skill">Webhooks</span>
-        <span class="skill">REST / SOAP APIs</span>
-        <span class="skill">OData APIs</span>
-        <span class="skill">SSIS (KingswaySoft)</span>
-        <span class="skill">Microsoft Graph API</span>
-        <span class="skill">HubSpot & Dow Jones Integration</span>
-        <span class="skill">SharePoint Integration</span>
-      </div>
-    </div>
-
-    <!-- Data -->
-    <div class="skill-group">
-      <h4>Data, Reporting & Security</h4>
-      <div class="skills-wrap">
-        <span class="skill">SQL Server</span>
-        <span class="skill">Dataverse</span>
-        <span class="skill">Data Migration</span>
-        <span class="skill">SSRS Reporting</span>
-        <span class="skill">Azure Storage</span>
-        <span class="skill">Role-Based Security</span>
-        <span class="skill">Field-Level Security</span>
-        <span class="skill">GDPR Compliance</span>
-      </div>
-    </div>
-
-    <!-- Identity -->
-    <div class="skill-group">
-      <h4>Identity & Authentication</h4>
-      <div class="skills-wrap">
-        <span class="skill">Microsoft Entra ID (Azure AD)</span>
-        <span class="skill">Azure AD B2C</span>
-        <span class="skill">SSO</span>
-        <span class="skill">Power Pages Authentication</span>
-      </div>
-    </div>
-
-    <!-- Tools -->
-    <div class="skill-group">
-      <h4>Tools & DevOps</h4>
-      <div class="skills-wrap">
-        <span class="skill">Azure DevOps</span>
-        <span class="skill">Git</span>
-        <span class="skill">Visual Studio</span>
-        <span class="skill">VS Code</span>
-        <span class="skill">XrmToolBox</span>
-        <span class="skill">Jira</span>
-      </div>
-    </div>
-
-    <!-- Consulting -->
-    <div class="skill-group">
-      <h4>Consulting & Delivery</h4>
-      <div class="skills-wrap">
-        <span class="skill">Solution Design</span>
-        <span class="skill">ALM</span>
-        <span class="skill">Requirement Analysis</span>
-        <span class="skill">Business Process Improvement</span>
-        <span class="skill">Stakeholder Management</span>
-        <span class="skill">Agile / Scrum</span>
-        <span class="skill">Client Training</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-	<div class="section" id="how-i-work">
-  <div class="section-head">
-    <span class="eyebrow">Approach</span>
-    <h2>How I Work</h2>
-    <p class="section-copy">
-      I focus on solving real business problems by combining structured thinking, practical design, and reliable execution.
-    </p>
-  </div>
-
-  <div class="how-grid">
-
-    <div class="how-card">
-      <h4>Understand First</h4>
-      <p>
-        I start by understanding how the business actually works — not just requirements, but real workflows, pain points, and bottlenecks.
-      </p>
-    </div>
-
-    <div class="how-card">
-      <h4>Simplify the Process</h4>
-      <p>
-        Before building anything, I simplify the process. A clean process leads to a better system and fewer long-term issues.
-      </p>
-    </div>
-
-    <div class="how-card">
-      <h4>Design with Purpose</h4>
-      <p>
-        Every feature I build has a clear purpose — improving efficiency, reducing manual work, or increasing visibility.
-      </p>
-    </div>
-
-    <div class="how-card">
-      <h4>Automate Where It Matters</h4>
-      <p>
-        I focus on automating repetitive tasks like approvals, notifications, validations, and data handling.
-      </p>
-    </div>
-
-    <div class="how-card">
-      <h4>Build for Scale</h4>
-      <p>
-        Solutions are designed to be reliable, maintainable, and ready to grow with the business.
-      </p>
-    </div>
-
-    <div class="how-card">
-      <h4>Work Closely with Teams</h4>
-      <p>
-        I collaborate with stakeholders, developers, and users to ensure the solution fits both technical and business needs.
-      </p>
-    </div>
-
-  </div>
-</div>
-    <section class="section" id="contact">
-      <div class="section-head">
-        <span class="eyebrow">Let’s Connect</span>
-        <h2>Contact</h2>
-        <p class="section-copy">
-          Open to Dynamics 365 and Power Platform opportunities where business value, automation, and practical delivery matter.
-        </p>
-      </div>
-
-      <div class="contact-card">
-        <div class="contact-grid">
-          <div class="contact-item">
-            <div class="contact-label">Email</div>
-            <div><a href="mailto:ashirzahid4444@gmail.com">ashirzahid4444@gmail.com</a></div>
+    <section class="section reveal" id="skills">
+      <div class="section-head"><h2>Skills &amp; Expertise</h2></div>
+      <p class="section-copy">A blend of technical depth and business-focused solution design across Dynamics 365, Power Platform, and enterprise systems. Chips are color-coded by product.</p>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Dynamics 365 &amp; Power Platform</h4>
+          <div class="skills-wrap">
+            <span class="skill" style="background:var(--dynamics-tint);color:var(--dynamics)">Dynamics 365 (Sales, Customer Service)</span>
+            <span class="skill" style="background:var(--dynamics-tint);color:var(--dynamics)">Dataverse</span>
+            <span class="skill" style="background:var(--dynamics-tint);color:var(--dynamics)">Model-Driven Apps</span>
+            <span class="skill" style="background:var(--power-apps-tint);color:var(--power-apps)">Canvas Apps</span>
+            <span class="skill" style="background:var(--power-pages-tint);color:var(--power-pages)">Power Pages</span>
+            <span class="skill" style="background:var(--power-automate-tint);color:var(--power-automate)">Power Automate</span>
+            <span class="skill" style="background:var(--power-apps-tint);color:var(--power-apps)">AI Builder</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Business Rules &amp; Workflows</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Ribbon Workbench</span>
+            <span class="skill" style="background:var(--power-apps-tint);color:var(--power-apps)">Custom Pages</span>
+            <span class="skill" style="background:var(--dynamics-tint);color:var(--dynamics)">Power Platform Pipelines</span>
           </div>
-          <div class="contact-item">
-            <div class="contact-label">LinkedIn</div>
-            <div><a href="https://www.linkedin.com/in/ashirzahid/" target="_blank" rel="noopener">View Profile</a></div>
+        </div>
+        <div class="skill-group">
+          <h4>Development</h4>
+          <div class="skills-wrap">
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">C# / .NET</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Plugins &amp; Custom Workflow Activities</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">ASP.NET (MVC, Web API)</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">JavaScript / TypeScript</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">jQuery / Knockout JS</span>
+            <span class="skill" style="background:var(--power-apps-tint);color:var(--power-apps)">Power FX</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">HTML / CSS</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Liquid Templates</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">FetchXML / SDK</span>
           </div>
-          <div class="contact-item">
-            <div class="contact-label">Location</div>
-            <div>Riyadh, Saudi Arabia</div>
+        </div>
+        <div class="skill-group">
+          <h4>Integration &amp; Automation</h4>
+          <div class="skills-wrap">
+            <span class="skill" style="background:var(--azure-tint);color:var(--azure)">Azure Functions</span>
+            <span class="skill" style="background:var(--azure-tint);color:var(--azure)">Azure Logic Apps</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Webhooks</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">REST / SOAP APIs</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">OData APIs</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">SSIS (KingswaySoft)</span>
+            <span class="skill" style="background:var(--azure-tint);color:var(--azure)">Microsoft Graph API</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">HubSpot &amp; Dow Jones Integration</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">SharePoint Integration</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Data, Reporting &amp; Security</h4>
+          <div class="skills-wrap">
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">SQL Server</span>
+            <span class="skill" style="background:var(--dynamics-tint);color:var(--dynamics)">Dataverse</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Data Migration</span>
+            <span class="skill" style="background:var(--power-bi-tint);color:var(--power-bi)">SSRS Reporting</span>
+            <span class="skill" style="background:var(--azure-tint);color:var(--azure)">Azure Storage</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Role-Based Security</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Field-Level Security</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">GDPR Compliance</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Identity &amp; Authentication</h4>
+          <div class="skills-wrap">
+            <span class="skill" style="background:var(--azure-tint);color:var(--azure)">Microsoft Entra ID (Azure AD)</span>
+            <span class="skill" style="background:var(--azure-tint);color:var(--azure)">Azure AD B2C</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">SSO</span>
+            <span class="skill" style="background:var(--power-pages-tint);color:var(--power-pages)">Power Pages Authentication</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Tools &amp; DevOps</h4>
+          <div class="skills-wrap">
+            <span class="skill" style="background:var(--azure-tint);color:var(--azure)">Azure DevOps</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Git</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Visual Studio</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">VS Code</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">XrmToolBox</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Jira</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Consulting &amp; Delivery</h4>
+          <div class="skills-wrap">
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Solution Design</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">ALM</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Requirement Analysis</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Business Process Improvement</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Stakeholder Management</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Agile / Scrum</span>
+            <span class="skill" style="background:#f3f2f1;color:#201f1e">Client Training</span>
           </div>
         </div>
       </div>
     </section>
 
-    <footer class="footer">
-      © 2026 Ashir Zahid — Dynamics 365 CE & Power Platform Portfolio
-    </footer>
+    <section class="section reveal" id="how-i-work">
+      <div class="section-head"><h2>How I Work</h2></div>
+      <p class="section-copy">I focus on solving real business problems by combining structured thinking, practical design, and reliable execution.</p>
+      <div class="how-grid">
+        <div class="how-card"><h4>Understand First</h4><p>I start by understanding how the business actually works — not just requirements, but real workflows, pain points, and bottlenecks.</p></div>
+        <div class="how-card"><h4>Simplify the Process</h4><p>Before building anything, I simplify the process. A clean process leads to a better system and fewer long-term issues.</p></div>
+        <div class="how-card"><h4>Design with Purpose</h4><p>Every feature I build has a clear purpose — improving efficiency, reducing manual work, or increasing visibility.</p></div>
+        <div class="how-card"><h4>Automate Where It Matters</h4><p>I focus on automating repetitive tasks like approvals, notifications, validations, and data handling.</p></div>
+        <div class="how-card"><h4>Build for Scale</h4><p>Solutions are designed to be reliable, maintainable, and ready to grow with the business.</p></div>
+        <div class="how-card"><h4>Work Closely with Teams</h4><p>I collaborate with stakeholders, developers, and users to ensure the solution fits both technical and business needs.</p></div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="contact">
+      <div class="section-head"><h2>Contact</h2></div>
+      <p class="section-copy">Open to Dynamics 365 and Power Platform opportunities — full-time or contract — where business value, automation, and practical delivery matter.</p>
+      <div class="compose-card">
+        <div class="compose-head">New Message</div>
+        <div class="compose-fields">
+          <div class="compose-field"><div class="compose-field-label">Email</div><div class="compose-field-value"><a href="mailto:ashirzahid4444@gmail.com">ashirzahid4444@gmail.com</a></div></div>
+          <div class="compose-field"><div class="compose-field-label">Phone</div><div class="compose-field-value">+966 59 521 1562</div></div>
+          <div class="compose-field"><div class="compose-field-label">LinkedIn</div><div class="compose-field-value"><a href="https://www.linkedin.com/in/ashirzahid/" target="_blank" rel="noopener">View Profile</a></div></div>
+          <div class="compose-field"><div class="compose-field-label">Location</div><div class="compose-field-value">Riyadh, Saudi Arabia</div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <span>© 2026 Ashir Zahid</span>
+      <span>Dynamics 365 CE &amp; Power Platform Portfolio</span>
+      <span>Last updated Sep 2026</span>
+    </div>
   </main>
+</div>
 
-  <script>
-    const revealItems = document.querySelectorAll('.section, .story-card, .impact-card');
+<div class="cmdk-overlay" id="cmdk-overlay" hidden>
+  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Quick navigation">
+    <div class="cmdk-head">
+      <span>Quick Navigation</span>
+      <button type="button" class="cmdk-close" id="cmdk-close" aria-label="Close">✕</button>
+    </div>
+    <input type="text" class="cmdk-input" id="cmdk-input" placeholder="Jump to a section or action…" autocomplete="off">
+    <div class="cmdk-list" id="cmdk-list">
+      <button type="button" class="cmdk-item" data-href="#impact">Go to <strong>Key Impact</strong></button>
+      <button type="button" class="cmdk-item" data-href="#ai">Go to <strong>AI Spotlight</strong></button>
+      <button type="button" class="cmdk-item" data-href="#certifications">Go to <strong>Certifications</strong></button>
+      <button type="button" class="cmdk-item" data-href="#experience">Go to <strong>Experience</strong></button>
+      <button type="button" class="cmdk-item" data-href="#projects">Go to <strong>Case Studies</strong></button>
+      <button type="button" class="cmdk-item" data-href="#testimonials">Go to <strong>Testimonials</strong></button>
+      <button type="button" class="cmdk-item" data-href="#skills">Go to <strong>Skills</strong></button>
+      <button type="button" class="cmdk-item" data-href="#how-i-work">Go to <strong>How I Work</strong></button>
+      <button type="button" class="cmdk-item" data-href="#contact">Go to <strong>Contact</strong></button>
+      <button type="button" class="cmdk-item" data-action="mailto">Send an email</button>
+      <button type="button" class="cmdk-item" data-action="linkedin">Open LinkedIn profile</button>
+      <button type="button" class="cmdk-item" data-action="print">Print / save as PDF</button>
+    </div>
+    <div class="cmdk-hint">↑↓ navigate · Enter select · Esc close</div>
+  </div>
+</div>
 
-    const revealOnScroll = () => {
-      revealItems.forEach((item, index) => {
-        const top = item.getBoundingClientRect().top;
-        if (top < window.innerHeight - 80) {
-          setTimeout(() => {
-            item.classList.add('show');
-          }, index * 60);
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('pending');
+          io.unobserve(entry.target);
         }
       });
-    };
+    }, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
+    items.forEach(function (el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top > window.innerHeight * 0.92) {
+        el.classList.add('pending');
+      }
+      io.observe(el);
+    });
 
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('load', revealOnScroll);
-  </script>
-</body>
-</html>
+    // --- Scrollspy: highlight the current section in the sitemap / mobile tabs ---
+    (function () {
+      var navLinks = document.querySelectorAll('.site-link, .mobile-tabs a');
+      var sections = [];
+      navLinks.forEach(function (link) {
+        var id = link.getAttribute('href');
+        if (id && id.charAt(0) === '#') {
+          var sec = document.querySelector(id);
+          if (sec) sections.push(sec);
+        }
+      });
+      if (!('IntersectionObserver' in window) || !sections.length) return;
+      function setActive(id) {
+        navLinks.forEach(function (link) {
+          var match = link.getAttribute('href') === id;
+          link.classList.toggle('is-active', match);
+          if (match) link.setAttribute('aria-current', 'page');
+          else link.removeAttribute('aria-current');
+        });
+      }
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) setActive('#' + entry.target.id);
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+      sections.forEach(function (s) { spy.observe(s); });
+    })();
+
+    // --- Case study filter chips (filters both the index table and the record cards) ---
+    (function () {
+      var chips = document.querySelectorAll('.filter-chip');
+      var rows = document.querySelectorAll('#case-index-body tr');
+      var records = document.querySelectorAll('.record[data-platform]');
+      var viewCount = document.getElementById('view-count');
+      if (!chips.length) return;
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          chips.forEach(function (c) { c.classList.remove('is-active'); c.setAttribute('aria-pressed', 'false'); });
+          chip.classList.add('is-active');
+          chip.setAttribute('aria-pressed', 'true');
+          var f = chip.getAttribute('data-filter');
+          var visible = 0;
+          rows.forEach(function (r) {
+            var match = f === 'all' || r.getAttribute('data-platform') === f;
+            r.hidden = !match;
+            if (match) visible++;
+          });
+          records.forEach(function (rec) {
+            var match = f === 'all' || rec.getAttribute('data-platform') === f;
+            rec.hidden = !match;
+          });
+          if (viewCount) viewCount.textContent = visible + ' of ' + rows.length;
+        });
+      });
+    })();
+
+    // --- KPI count-up animation (final values are already in the markup at rest) ---
+    (function () {
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var nums = document.querySelectorAll('.kpi-num[data-count-to]');
+      if (!nums.length || reduceMotion || !('IntersectionObserver' in window)) return;
+      var counter = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          counter.unobserve(entry.target);
+          var el = entry.target;
+          var target = parseFloat(el.getAttribute('data-count-to'));
+          var suffix = el.getAttribute('data-suffix') || '';
+          var start = null;
+          var dur = 900;
+          function step(ts) {
+            if (!start) start = ts;
+            var p = Math.min((ts - start) / dur, 1);
+            var eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(target * eased) + suffix;
+            if (p < 1) requestAnimationFrame(step);
+            else el.textContent = target + suffix;
+          }
+          requestAnimationFrame(step);
+        });
+      }, { threshold: 0.4 });
+      nums.forEach(function (el) { counter.observe(el); });
+    })();
+
+    // --- Print / Save as PDF button ---
+    (function () {
+      var printBtn = document.getElementById('print-btn');
+      if (printBtn) printBtn.addEventListener('click', function (e) { e.preventDefault(); window.print(); });
+    })();
+
+    // --- Command palette (Ctrl/Cmd+K quick navigation) ---
+    (function () {
+      var overlay = document.getElementById('cmdk-overlay');
+      var input = document.getElementById('cmdk-input');
+      var list = document.getElementById('cmdk-list');
+      if (!overlay || !input || !list) return;
+      var items = Array.prototype.slice.call(list.querySelectorAll('.cmdk-item'));
+      var trigger = document.getElementById('cmdk-trigger');
+      var closeBtn = document.getElementById('cmdk-close');
+      var activeIndex = -1;
+
+      function visibleItems() { return items.filter(function (i) { return !i.hidden; }); }
+      function highlight() {
+        var visible = visibleItems();
+        items.forEach(function (item) { item.classList.remove('is-active'); });
+        if (activeIndex >= 0 && visible[activeIndex]) visible[activeIndex].classList.add('is-active');
+      }
+      function filterItems(q) {
+        q = q.toLowerCase();
+        items.forEach(function (item) { item.hidden = q.length > 0 && item.textContent.toLowerCase().indexOf(q) === -1; });
+        activeIndex = visibleItems().length ? 0 : -1;
+        highlight();
+      }
+      function openPalette() {
+        overlay.hidden = false;
+        document.body.style.overflow = 'hidden';
+        input.value = '';
+        filterItems('');
+        input.focus();
+      }
+      function closePalette() {
+        if (overlay.hidden) return;
+        overlay.hidden = true;
+        document.body.style.overflow = '';
+        if (trigger) trigger.focus();
+      }
+      function runItem(item) {
+        var href = item.getAttribute('data-href');
+        var action = item.getAttribute('data-action');
+        closePalette();
+        if (href) {
+          var target = document.querySelector(href);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        } else if (action === 'mailto') {
+          window.location.href = 'mailto:ashirzahid4444@gmail.com?subject=Portfolio%20Inquiry';
+        } else if (action === 'linkedin') {
+          window.open('https://www.linkedin.com/in/ashirzahid/', '_blank', 'noopener');
+        } else if (action === 'print') {
+          window.print();
+        }
+      }
+
+      if (trigger) trigger.addEventListener('click', function (e) { e.preventDefault(); openPalette(); });
+      if (closeBtn) closeBtn.addEventListener('click', function (e) { e.preventDefault(); closePalette(); });
+      input.addEventListener('input', function () { filterItems(input.value); });
+      items.forEach(function (item) { item.addEventListener('click', function () { runItem(item); }); });
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) closePalette(); });
+
+      document.addEventListener('keydown', function (e) {
+        var isK = e.key === 'k' || e.key === 'K';
+        if ((e.metaKey || e.ctrlKey) && isK) {
+          e.preventDefault();
+          if (overlay.hidden) openPalette(); else closePalette();
+          return;
+        }
+        if (overlay.hidden) return;
+        var visible = visibleItems();
+        if (e.key === 'Escape') { closePalette(); }
+        else if (e.key === 'ArrowDown') { e.preventDefault(); activeIndex = Math.min(activeIndex + 1, visible.length - 1); highlight(); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); activeIndex = Math.max(activeIndex - 1, 0); highlight(); }
+        else if (e.key === 'Enter') { e.preventDefault(); if (visible[activeIndex]) runItem(visible[activeIndex]); }
+      });
+    })();
+  });
+</script>
